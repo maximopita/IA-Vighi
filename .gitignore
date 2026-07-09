@@ -6,3 +6,6 @@ venv/
 
 # Modelo entrenado (se genera al correr entrenar.py, no hace falta subirlo)
 *.pth
+
+# Config local de Claude Code
+.claude/settings.local.json
