@@ -1,0 +1,8 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Modelo entrenado (se genera al correr entrenar.py, no hace falta subirlo)
+*.pth
