@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clasificador de Órganos</title>
+  <style>
+    :root {
+      --azul: #7c3aed;          /* violeta principal */
+      --azul-oscuro: #6d28d9;   /* violeta mas profundo */
+      --azul-claro: #f5f3ff;    /* violeta muy claro (fondos) */
+      --gris: #6b6580;          /* gris con matiz violaceo */
+      --gris-claro: #f4f1fb;    /* gris claro violaceo */
+      --borde: #d6ccf0;         /* borde lila */
+      --verde: #7c3aed;         /* acentos = mismo violeta */
+      --texto: #2e1065;         /* texto violeta muy oscuro */
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(160deg, #f5f3ff, #ede9fe);
+      color: var(--texto);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 32px 16px;
+    }
+    .contenedor {
+      width: 100%;
+      max-width: 620px;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 10px 40px rgba(15, 23, 42, 0.10);
+      overflow: hidden;
+    }
+    header {
+      background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+      color: #fff;
+      padding: 24px 28px;
+    }
+    header h1 { font-size: 22px; font-weight: 700; }
+    header p { font-size: 14px; opacity: 0.9; margin-top: 4px; }
+    .cuerpo { padding: 28px; }
+
+    .aviso {
+      background: #fef3c7;
+      border: 1px solid #fcd34d;
+      color: #92400e;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    .aviso code {
+      background: rgba(0,0,0,0.08);
+      padding: 2px 6px;
+      border-radius: 5px;
+    }
+
+    #zona {
+      border: 2px dashed var(--borde);
+      border-radius: 14px;
+      padding: 40px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      background: var(--gris-claro);
+    }
+    #zona:hover, #zona.activo {
+      border-color: var(--azul);
+      background: var(--azul-claro);
+    }
+    #zona .icono { font-size: 46px; }
+    #zona p { color: var(--gris); margin-top: 10px; font-size: 15px; }
+    #zona .chico { font-size: 13px; margin-top: 4px; }
+
+    #preview {
+      margin-top: 20px;
+      text-align: center;
+      display: none;
+    }
+    #preview img {
+      max-width: 100%;
+      max-height: 300px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    }
+
+    .cargando {
+      display: none;
+      text-align: center;
+      margin-top: 20px;
+      color: var(--gris);
+    }
+    .spinner {
+      width: 32px; height: 32px;
+      border: 3px solid var(--borde);
+      border-top-color: var(--azul);
+      border-radius: 50%;
+      margin: 0 auto 8px;
+      animation: girar 0.8s linear infinite;
+    }
+    @keyframes girar { to { transform: rotate(360deg); } }
+
+    #resultado { display: none; margin-top: 24px; }
+    .titulo-res {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .titulo-res .etiqueta { font-size: 13px; color: var(--gris); text-transform: uppercase; letter-spacing: 0.5px; }
+    .titulo-res .organo { font-size: 30px; font-weight: 800; color: var(--azul); margin-top: 2px; }
+    .titulo-res .conf { font-size: 15px; color: var(--verde); font-weight: 600; margin-top: 4px; }
+
+    .barra-fila { margin-bottom: 12px; }
+    .barra-top { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 4px; }
+    .barra-top .nombre { font-weight: 600; }
+    .barra-top .valor { color: var(--gris); }
+    .barra-fondo {
+      background: var(--gris-claro);
+      border-radius: 8px;
+      height: 14px;
+      overflow: hidden;
+    }
+    .barra-relleno {
+      height: 100%;
+      background: linear-gradient(90deg, #c4b5fd, #7c3aed);
+      border-radius: 8px;
+      width: 0;
+      transition: width 0.6s ease;
+    }
+    .barra-fila:first-child .barra-relleno {
+      background: linear-gradient(90deg, #a78bfa, #6d28d9);
+    }
+
+    .disclaimer {
+      margin-top: 18px;
+      padding: 10px 14px;
+      background: var(--azul-claro);
+      border: 1px solid var(--borde);
+      border-radius: 10px;
+      font-size: 12.5px;
+      color: var(--gris);
+      line-height: 1.4;
+    }
+
+    #feedback {
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid var(--borde);
+    }
+    .feedback-titulo {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--texto);
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    .feedback-botones {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .btn-fb {
+      flex: 1;
+      min-width: 140px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1.5px solid var(--borde);
+      background: #fff;
+      color: var(--texto);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.12s ease;
+    }
+    .btn-fb:hover:not(:disabled) { border-color: var(--azul); background: var(--azul-claro); }
+    .btn-fb:disabled { opacity: 0.5; cursor: default; }
+    .btn-fb.si { border-color: #86efac; }
+    .btn-fb.si:hover:not(:disabled) { background: #f0fdf4; border-color: #16a34a; }
+    .btn-fb.no { border-color: #fca5a5; }
+    .btn-fb.no:hover:not(:disabled) { background: #fef2f2; border-color: #dc2626; }
+    .feedback-ok {
+      display: none;
+      margin-top: 12px;
+      padding: 10px 14px;
+      background: #f0fdf4;
+      border: 1px solid #86efac;
+      color: #166534;
+      border-radius: 10px;
+      font-size: 13.5px;
+      text-align: center;
+    }
+
+    #error {
+      display: none;
+      background: #fee2e2;
+      border: 1px solid #fca5a5;
+      color: #991b1b;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 14px;
+      margin-top: 20px;
+    }
+
+    .boton-otra {
+      display: none;
+      width: 100%;
+      margin-top: 20px;
+      padding: 12px;
+      background: var(--gris-claro);
+      border: 1px solid var(--borde);
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--texto);
+      cursor: pointer;
+    }
+    .boton-otra:hover { background: #e2e8f0; }
+
+    .selector-organo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .selector-organo label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--texto);
+    }
+    .selector-organo select {
+      flex: 1;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1.5px solid var(--borde);
+      background: #fff;
+      color: var(--texto);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .selector-organo select:focus { outline: none; border-color: var(--azul); }
+
+    .explicacion {
+      margin-top: 18px;
+      padding: 14px 16px;
+      background: var(--azul-claro);
+      border-left: 4px solid var(--azul);
+      border-radius: 8px;
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: var(--texto);
+    }
+
+    #mapa-seccion {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .mapa-titulo {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--texto);
+      margin-bottom: 10px;
+    }
+    .mapa-comparacion {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .mapa-fig {
+      margin: 0;
+      flex: 1;
+      min-width: 140px;
+      max-width: 260px;
+    }
+    .mapa-fig figcaption {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gris);
+      margin-top: 6px;
+    }
+    .mapa-img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    }
+    .mapa-nota {
+      font-size: 12px;
+      color: var(--gris);
+      margin-top: 8px;
+      line-height: 1.4;
+    }
+
+    /* Imágenes ampliables al tocarlas */
+    .ampliable { cursor: zoom-in; }
+    #lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 5, 40, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 1000;
+      cursor: zoom-out;
+    }
+    #lightbox[hidden] { display: none; }
+    #lightbox img {
+      max-width: 95%;
+      max-height: 95%;
+      border-radius: 10px;
+      box-shadow: 0 10px 50px rgba(0,0,0,0.6);
+    }
+    #lightbox .cerrar {
+      position: absolute;
+      top: 16px;
+      right: 22px;
+      color: #fff;
+      font-size: 34px;
+      line-height: 1;
+      font-weight: 700;
+      opacity: 0.85;
+    }
+  </style>
+</head>
+<body>
+  <div class="contenedor">
+    <header>
+      <h1>🔬 Asistente de Benignidad</h1>
+      <p>Elegí el órgano, subí una imagen y la IA estima Benigno / Maligno.</p>
+    </header>
+    <div class="cuerpo">
+      {% if not organos %}
+      <div class="aviso">
+        ⚠️ Todavía no hay ningún modelo entrenado. Corré
+        <code>python entrenar_benignidad.py &lt;Organo&gt;</code> y después reiniciá esta app.
+      </div>
+      {% else %}
+      <div class="selector-organo">
+        <label for="organo">Órgano de la muestra:</label>
+        <select id="organo">
+          {% for o in organos %}
+          <option value="{{ o }}">{{ o }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      {% endif %}
+
+      <div id="zona">
+        <div class="icono">📁</div>
+        <p><strong>Arrastrá una imagen acá</strong> o hacé clic para elegir</p>
+        <p class="chico">JPG, PNG, WEBP, BMP, TIFF</p>
+      </div>
+      <input type="file" id="archivo" accept="image/*" hidden>
+
+      <div id="preview">
+        <img id="preview-img" alt="Vista previa">
+      </div>
+
+      <div class="cargando" id="cargando">
+        <div class="spinner"></div>
+        Analizando…
+      </div>
+
+      <div id="error"></div>
+
+      <div id="resultado">
+        <div class="titulo-res">
+          <div class="etiqueta" id="res-organo-etq">Órgano</div>
+          <div class="organo" id="res-organo">—</div>
+          <div class="conf" id="res-conf"></div>
+        </div>
+        <div id="barras"></div>
+
+        <div id="explicacion" class="explicacion"></div>
+
+        <div id="mapa-seccion" hidden>
+          <div class="mapa-titulo">🔥 ¿Dónde miró la IA?</div>
+          <div class="mapa-comparacion">
+            <figure class="mapa-fig">
+              <img id="mapa-original" class="mapa-img ampliable" alt="Imagen original">
+              <figcaption>Original (tocá para ampliar)</figcaption>
+            </figure>
+            <figure class="mapa-fig">
+              <img id="mapa-img" class="mapa-img ampliable" alt="Mapa de atención">
+              <figcaption>Mapa de atención (tocá para ampliar)</figcaption>
+            </figure>
+          </div>
+          <div class="mapa-nota">
+            Las zonas en <strong>rojo</strong> son las que más pesaron en la decisión.
+            Muestra <em>dónde</em> se concentró la IA — no es una explicación médica en palabras.
+          </div>
+        </div>
+
+        <div class="disclaimer">
+          🔬 Resultado orientativo de apoyo. <strong>No es un diagnóstico</strong>:
+          la validación final es siempre del profesional.
+        </div>
+
+        <div id="feedback">
+          <div class="feedback-titulo">¿Concordás con este resultado?</div>
+          <div class="feedback-botones" id="feedback-botones"></div>
+          <div class="feedback-ok" id="feedback-ok"></div>
+        </div>
+      </div>
+
+      <button class="boton-otra" id="boton-otra">Probar con otra imagen</button>
+    </div>
+  </div>
+
+  <!-- Imagen ampliada a pantalla completa -->
+  <div id="lightbox" hidden>
+    <span class="cerrar">&times;</span>
+    <img id="lightbox-img" alt="Imagen ampliada">
+  </div>
+
+  <script>
+    const zona = document.getElementById("zona");
+    const inputArchivo = document.getElementById("archivo");
+    const preview = document.getElementById("preview");
+    const previewImg = document.getElementById("preview-img");
+    const cargando = document.getElementById("cargando");
+    const resultado = document.getElementById("resultado");
+    const cajaError = document.getElementById("error");
+    const botonOtra = document.getElementById("boton-otra");
+    const feedbackBotones = document.getElementById("feedback-botones");
+    const feedbackOk = document.getElementById("feedback-ok");
+
+    // Guardamos el archivo actual para poder mandarlo al feedback.
+    let archivoActual = null;
+
+    // ----- Lightbox: tocar una imagen la amplía -----
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+
+    function ampliarImagen(src) {
+      if (!src) return;
+      lightboxImg.src = src;
+      lightbox.hidden = false;
+    }
+    lightbox.addEventListener("click", () => { lightbox.hidden = true; });
+    // Hacer ampliables las imágenes de la comparación y la vista previa.
+    ["mapa-original", "mapa-img", "preview-img"].forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.add("ampliable");
+        el.addEventListener("click", () => ampliarImagen(el.src));
+      }
+    });
+
+    // Devuelve el organo elegido en el selector (o "" si no hay selector).
+    function organoSeleccionado() {
+      const sel = document.getElementById("organo");
+      return sel ? sel.value : "";
+    }
+
+    zona.addEventListener("click", () => inputArchivo.click());
+
+    zona.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      zona.classList.add("activo");
+    });
+    zona.addEventListener("dragleave", () => zona.classList.remove("activo"));
+    zona.addEventListener("drop", (e) => {
+      e.preventDefault();
+      zona.classList.remove("activo");
+      if (e.dataTransfer.files.length) manejarArchivo(e.dataTransfer.files[0]);
+    });
+
+    inputArchivo.addEventListener("change", () => {
+      if (inputArchivo.files.length) manejarArchivo(inputArchivo.files[0]);
+    });
+
+    botonOtra.addEventListener("click", () => {
+      resultado.style.display = "none";
+      botonOtra.style.display = "none";
+      preview.style.display = "none";
+      cajaError.style.display = "none";
+      zona.style.display = "block";
+      inputArchivo.value = "";
+      archivoActual = null;
+    });
+
+    function manejarArchivo(archivo) {
+      if (!archivo.type.startsWith("image/")) {
+        mostrarError("Ese archivo no es una imagen.");
+        return;
+      }
+
+      archivoActual = archivo;
+
+      // Vista previa
+      const lector = new FileReader();
+      lector.onload = (e) => {
+        previewImg.src = e.target.result;
+        preview.style.display = "block";
+      };
+      lector.readAsDataURL(archivo);
+
+      zona.style.display = "none";
+      cajaError.style.display = "none";
+      resultado.style.display = "none";
+      botonOtra.style.display = "none";
+      cargando.style.display = "block";
+
+      const datos = new FormData();
+      datos.append("imagen", archivo);
+      datos.append("organo", organoSeleccionado());
+
+      fetch("/predecir", { method: "POST", body: datos })
+        .then((r) => r.json().then((j) => ({ ok: r.ok, j })))
+        .then(({ ok, j }) => {
+          cargando.style.display = "none";
+          if (!ok) {
+            mostrarError(j.error || "Ocurrió un error.");
+            return;
+          }
+          mostrarResultado(j);
+        })
+        .catch(() => {
+          cargando.style.display = "none";
+          mostrarError("No se pudo conectar con el servidor.");
+        });
+    }
+
+    function mostrarResultado(datos) {
+      const org = datos.organo ? datos.organo : "Muestra";
+      document.getElementById("res-organo-etq").textContent = "Órgano: " + org + " · Resultado";
+      const elOrgano = document.getElementById("res-organo");
+      elOrgano.textContent = datos.diagnostico;
+      // Color segun benignidad
+      const esMaligno = (datos.diagnostico || "").toLowerCase().includes("malig");
+      elOrgano.style.color = esMaligno ? "#dc2626" : "#16a34a";
+      document.getElementById("res-conf").textContent =
+        "Confianza: " + datos.confianza + "%";
+
+      // Texto que explica la decisión
+      const elExplicacion = document.getElementById("explicacion");
+      if (datos.explicacion) {
+        elExplicacion.textContent = datos.explicacion;
+        elExplicacion.style.display = "block";
+      } else {
+        elExplicacion.style.display = "none";
+      }
+
+      // Mapa de calor (donde miro la IA), lado a lado con el original
+      const mapaSeccion = document.getElementById("mapa-seccion");
+      if (datos.mapa_calor) {
+        document.getElementById("mapa-original").src = previewImg.src;
+        document.getElementById("mapa-img").src = datos.mapa_calor;
+        mapaSeccion.hidden = false;
+        preview.style.display = "none";   // evitamos mostrar el original dos veces
+      } else {
+        mapaSeccion.hidden = true;
+      }
+
+      const barras = document.getElementById("barras");
+      barras.innerHTML = "";
+      datos.probabilidades.forEach((p) => {
+        const fila = document.createElement("div");
+        fila.className = "barra-fila";
+        fila.innerHTML = `
+          <div class="barra-top">
+            <span class="nombre">${p.clase}</span>
+            <span class="valor">${p.valor}%</span>
+          </div>
+          <div class="barra-fondo">
+            <div class="barra-relleno"></div>
+          </div>`;
+        barras.appendChild(fila);
+        // Animar el ancho despues de insertar.
+        requestAnimationFrame(() => {
+          fila.querySelector(".barra-relleno").style.width = p.valor + "%";
+        });
+      });
+
+      // ----- Botones de confirmar / corregir (human-in-the-loop) -----
+      // "probabilidades" viene ordenado: el primero es el diagnostico sugerido.
+      const clases = datos.probabilidades.map((p) => p.clase);
+      const sugerida = datos.diagnostico;
+
+      feedbackBotones.innerHTML = "";
+      feedbackOk.style.display = "none";
+
+      // Boton "Sí, concuerdo" -> guarda con la clase sugerida.
+      const btnSi = document.createElement("button");
+      btnSi.className = "btn-fb si";
+      btnSi.textContent = "✓ Concuerdo (" + sugerida + ")";
+      btnSi.onclick = () => enviarFeedback(sugerida, "Confirmado como " + sugerida);
+      feedbackBotones.appendChild(btnSi);
+
+      // Un boton por cada OTRA clase -> corregir.
+      clases.filter((c) => c !== sugerida).forEach((c) => {
+        const btnNo = document.createElement("button");
+        btnNo.className = "btn-fb no";
+        btnNo.textContent = "✗ No, es " + c;
+        btnNo.onclick = () => enviarFeedback(c, "Corregido a " + c);
+        feedbackBotones.appendChild(btnNo);
+      });
+
+      resultado.style.display = "block";
+      botonOtra.style.display = "block";
+    }
+
+    function enviarFeedback(etiqueta, textoOk) {
+      if (!archivoActual) return;
+      const botones = feedbackBotones.querySelectorAll("button");
+      botones.forEach((b) => (b.disabled = true));
+
+      const datos = new FormData();
+      datos.append("imagen", archivoActual);
+      datos.append("etiqueta", etiqueta);
+      datos.append("organo", organoSeleccionado());
+
+      fetch("/feedback", { method: "POST", body: datos })
+        .then((r) => r.json().then((j) => ({ ok: r.ok, j })))
+        .then(({ ok, j }) => {
+          if (!ok) {
+            feedbackOk.style.display = "block";
+            feedbackOk.style.background = "#fef2f2";
+            feedbackOk.style.color = "#991b1b";
+            feedbackOk.textContent = "⚠️ " + (j.error || "No se pudo guardar.");
+            botones.forEach((b) => (b.disabled = false));
+            return;
+          }
+          feedbackOk.style.display = "block";
+          feedbackOk.textContent =
+            "✓ " + textoOk + ". Guardado para reentrenar (ya hay " +
+            j.total_en_clase + " imágenes en esa clase). ¡Gracias!";
+        })
+        .catch(() => {
+          feedbackOk.style.display = "block";
+          feedbackOk.style.background = "#fef2f2";
+          feedbackOk.style.color = "#991b1b";
+          feedbackOk.textContent = "⚠️ No se pudo conectar con el servidor.";
+          botones.forEach((b) => (b.disabled = false));
+        });
+    }
+
+    function mostrarError(mensaje) {
+      cajaError.textContent = "⚠️ " + mensaje;
+      cajaError.style.display = "block";
+      botonOtra.style.display = "block";
+    }
+  </script>
+</body>
+</html>
