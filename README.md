@@ -25,11 +25,54 @@ descargar el modelo Phikon).
 
 1. Elegís el **órgano** de la muestra en la interfaz web.
 2. Arrastrás una **imagen** histológica.
-3. La IA estima **Benigno o Maligno** con un porcentaje de confianza.
-4. El profesional **confirma o corrige** el resultado, y esa imagen se guarda para
+3. La app **verifica que la imagen sea del órgano elegido**. Si no coincide (o no
+   parece una muestra válida), **avisa y pide confirmación** antes de analizar. Ver
+   más abajo.
+4. La IA estima **Benigno o Maligno** con un porcentaje de confianza.
+5. Un **mini-informe de apoyo** combina **dos modelos independientes** y avisa si
+   **concuerdan** (refuerza) o **difieren** (caso a revisar). Ver más abajo.
+6. El profesional **confirma o corrige** el resultado, y esa imagen se guarda para
    mejorar el modelo en el próximo entrenamiento (*human-in-the-loop*).
 
-Órganos disponibles actualmente: **Pulmón** y **Colon**.
+Órganos disponibles actualmente: **Pulmón**, **Colon** y **Mama**.
+
+### Verificación de órgano (que la foto sea del órgano elegido)
+
+Antes de analizar, la app compara la imagen contra el "patrón" (centro) de cada órgano
+en el espacio de características de Phikon:
+
+- Si la imagen **se parece más a otro órgano** que al elegido → avisa
+  *"Elegiste Pulmón, pero se parece más a Colon (97.8% vs 2.2%). ¿Analizar igual?"*.
+- Si **no se parece a ninguna** muestra conocida (imagen rara o que no es histología)
+  → avisa *"no parece una muestra válida"*.
+
+En ambos casos **no bloquea**: el profesional decide con **"Analizar igual"** (analiza
+de todas formas) o **"Elegir otra imagen"**. Se midió sobre las imágenes reales y la
+separación Pulmón/Colon fue del **100%**. El "patrón" de cada órgano se calcula solo al
+entrenar, así que un órgano nuevo queda cubierto automáticamente.
+
+### El mini-informe de dos modelos
+
+Para dar más respaldo, el resultado usa **dos modelos de IA distintos e
+independientes**:
+
+- **Phikon (modelo de imagen):** es el clasificador principal, entrenado con tus
+  imágenes. Da la estimación Benigno/Maligno y el porcentaje.
+- **PLIP (segunda opinión):** un modelo de patología distinto que compara la imagen
+  contra descripciones de texto ("benign lung tissue" vs "lung adenocarcinoma") y
+  estima, por su cuenta, Benigno/Maligno.
+
+El informe muestra las dos opiniones y evalúa la **concordancia**:
+
+- ✅ **Coinciden** → dos modelos distintos de acuerdo: refuerza la estimación.
+- ⚠️ **Difieren** → es un caso más dudoso, conviene revisarlo con atención.
+
+> **Importante — por qué NO describe la morfología en palabras:** se probó usar PLIP
+> para escribir rasgos ("núcleos pleomórficos", "arquitectura cribriforme"…), pero en
+> modo *zero-shot* esas descripciones finas **no son confiables** (se midió sobre las
+> imágenes reales y fallaban seguido). Por eso el informe se limita a lo que **sí** es
+> confiable: la estimación de cada modelo y su acuerdo/desacuerdo. Poner palabras
+> médicas que el modelo no calcula bien sería engañoso y peligroso.
 
 ---
 
@@ -37,8 +80,8 @@ descargar el modelo Phikon).
 
 - **Python 3.13** (o compatible)
 - **Windows con rutas largas habilitadas** (ver más abajo, solo la primera vez)
-- **Conexión a internet** la primera vez (para descargar Phikon, ~335 MB; después
-  queda en caché y funciona offline)
+- **Conexión a internet** la primera vez (para descargar los modelos: Phikon ~335 MB
+  y PLIP ~600 MB; después quedan en caché y funciona offline)
 
 ---
 
@@ -134,6 +177,31 @@ para resultados confiables. Mantené las clases **balanceadas**.
 2. Corré `python entrenar_benignidad.py <NuevoOrgano>`.
 3. Reiniciá `python app.py`.
 
+### Entrenar desde imágenes PANORÁMICAS (detección de zonas)
+
+Hay dos formas de entrenar:
+
+- **Recortes puros (clásico):** cada imagen de `Datos/<Organo>/<Clase>/` es toda de
+  esa clase (un tile benigno o uno maligno). Es lo que usan pulmón, colon y mama hoy.
+- **Panorámicas (`--panoramica`):** ponés **imágenes amplias** (campos grandes). El
+  script **las corta solo en parches**, descarta el fondo (vidrio) y entrena con esos
+  parches. Así el modelo aprende a la **misma escala** en que después analiza, y marca
+  mejor las **zonas** de cáncer dentro de una imagen grande.
+
+```bash
+python entrenar_benignidad.py <Organo> --panoramica
+python entrenar_benignidad.py <Organo> --panoramica --parche=256   # tamaño de parche
+```
+
+> **Importante:** en modo panorámica, cada imagen que pongas en `Benigno/` debe ser un
+> **campo predominantemente sano**, y cada una en `Maligno/` un **campo con tumor**. Si
+> una panorámica mezcla mucho sano y tumor, conviene recortar antes la zona de cada
+> clase (o usar el modo clásico con recortes). La **escala** (aumento) de las imágenes
+> de entrenamiento debería ser parecida a la de las que vas a analizar.
+
+Al analizar, la app detecta que el modelo es panorámico (guarda el tamaño de parche) y
+recorre la imagen grande a esa misma escala para marcar las zonas.
+
 ---
 
 ## Estructura del proyecto
@@ -141,7 +209,7 @@ para resultados confiables. Mantené las clases **balanceadas**.
 | Archivo / carpeta | Qué es |
 |---|---|
 | `app.py` | La aplicación web (interfaz + predicción + feedback) |
-| `motor.py` | El motor de IA: carga Phikon y extrae características |
+| `motor.py` | Los motores de IA: Phikon (clasificación) y PLIP (segunda opinión) |
 | `entrenar_benignidad.py` | Entrena un clasificador de benignidad por órgano |
 | `templates/index.html` | La interfaz visual |
 | `requirements.txt` | Las dependencias de Python |

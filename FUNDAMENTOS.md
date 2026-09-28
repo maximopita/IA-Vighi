@@ -98,6 +98,40 @@ Por eso en la interfaz decimos "muestra dónde miró, no una explicación médic
 
 ---
 
+## 4b. La segunda opinión (PLIP) y por qué NO describimos morfología
+
+**Qué hacemos:** además del clasificador principal (Phikon), usamos un segundo modelo
+independiente, **PLIP**, para dar una "segunda opinión" Benigno/Maligno. El informe
+final muestra ambas y avisa si **concuerdan** o **difieren**.
+
+**Por qué se puede:** PLIP es un modelo *visión-lenguaje* de patología (estilo CLIP)
+entrenado con pares imagen-texto de histopatología. Permite *zero-shot*: comparar una
+imagen contra frases de texto ("benign lung tissue" vs "lung adenocarcinoma") sin
+reentrenar, y quedarse con la más parecida.
+
+**Fuente:**
+- Huang et al., *A visual–language foundation model for pathology image analysis using
+  medical Twitter* (PLIP / OpenPath), Nature Medicine, 2023. Modelo en Hugging Face
+  `vinid/plip`.
+
+**Por qué combinar dos modelos (concordancia):** son modelos distintos y entrenados de
+forma diferente. Cuando dos estimadores independientes coinciden, la confianza sube;
+cuando difieren, es una señal honesta de "caso dudoso" que conviene revisar. Es una
+forma simple de *ensemble* / segunda lectura.
+
+**Por qué NO escribimos un informe morfológico en palabras (hallazgo propio):** se
+probó usar PLIP en *zero-shot* para describir rasgos finos (arquitectura, núcleos,
+mitosis) eligiendo entre frases. Midiéndolo sobre las imágenes reales del laboratorio,
+esas descripciones finas **no fueron confiables** (p. ej. clasificaba tejido benigno
+como "arquitectura pobremente diferenciada"). En cambio, la estimación *gruesa*
+Benigno/Maligno de PLIP sí acertó ~94-95%. Conclusión honesta: mostramos lo que el
+modelo estima bien (la clase y la concordancia) y **no** le ponemos palabras médicas
+que no calcula de forma fiable. Un informe morfológico redactado de verdad requeriría
+un VLM de patología generativo (p. ej. *LLaVA-Med*, *PathChat*), que es pesado (GPU) y
+**aun así puede alucinar** — por eso quedaría, si se hace, bajo validación estricta.
+
+---
+
 ## 5. Dónde ampliar / mantenerse al día
 
 - **Modelos de patología (Hugging Face):** buscar `owkin/phikon`, `MahmoodLab/UNI`,

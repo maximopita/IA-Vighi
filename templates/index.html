@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Clasificador de Órganos</title>
+  <title>IA CAP Vighi</title>
   <style>
     :root {
       --azul: #7c3aed;          /* violeta principal */
@@ -38,7 +38,21 @@
       background: linear-gradient(135deg, #8b5cf6, #6d28d9);
       color: #fff;
       padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
     }
+    header .logo {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: #fff;
+      object-fit: contain;
+      padding: 4px;
+      flex-shrink: 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    }
+    header .titulos { min-width: 0; }
     header h1 { font-size: 22px; font-weight: 700; }
     header p { font-size: 14px; opacity: 0.9; margin-top: 4px; }
     .cuerpo { padding: 28px; }
@@ -204,6 +218,49 @@
       margin-top: 20px;
     }
 
+    /* Aviso de organo que no coincide */
+    #confirmacion {
+      margin-top: 20px;
+      background: #fffbeb;
+      border: 1.5px solid #fcd34d;
+      border-radius: 12px;
+      padding: 18px;
+      text-align: center;
+    }
+    #confirmacion[hidden] { display: none; }
+    #confirmacion .conf-icono { font-size: 34px; }
+    #confirmacion .conf-texto {
+      font-size: 14.5px;
+      line-height: 1.5;
+      color: #92400e;
+      font-weight: 600;
+      margin-top: 6px;
+    }
+    #confirmacion .conf-sims {
+      font-size: 12.5px;
+      color: var(--gris);
+      margin-top: 8px;
+    }
+    #confirmacion .conf-botones {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+    .conf-btn {
+      padding: 11px 18px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1.5px solid transparent;
+    }
+    .conf-btn.analizar { background: var(--azul); color: #fff; }
+    .conf-btn.analizar:hover { background: var(--azul-oscuro); }
+    .conf-btn.cancelar { background: #fff; border-color: var(--borde); color: var(--texto); }
+    .conf-btn.cancelar:hover { background: var(--gris-claro); }
+
     .boton-otra {
       display: none;
       width: 100%;
@@ -251,6 +308,77 @@
       border-radius: 8px;
       font-size: 13.5px;
       line-height: 1.55;
+      color: var(--texto);
+    }
+    .explicacion .exp-resumen {
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .explicacion .exp-item {
+      margin-bottom: 9px;
+    }
+    .explicacion .exp-etq {
+      display: block;
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      color: var(--azul-oscuro);
+      margin-bottom: 1px;
+    }
+    .explicacion .exp-limite {
+      margin-top: 10px;
+      padding-top: 9px;
+      border-top: 1px dashed var(--borde);
+      font-size: 12.5px;
+      color: var(--gris);
+    }
+    /* Mini-informe de dos modelos */
+    .inf-titulo {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--azul-oscuro);
+      margin-bottom: 12px;
+    }
+    .inf-modelos {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .inf-modelo {
+      flex: 1;
+      min-width: 150px;
+      background: #fff;
+      border: 1px solid var(--borde);
+      border-radius: 10px;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .inf-modelo-etq {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      color: var(--gris);
+    }
+    .inf-modelo-clase { font-size: 18px; font-weight: 800; }
+    .inf-modelo-val { font-size: 12.5px; color: var(--gris); font-weight: 600; }
+    .inf-conc {
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      line-height: 1.5;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .inf-conc.conc-ok { background: #f0fdf4; border: 1px solid #86efac; color: #166534; }
+    .inf-conc.conc-warn { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+    .inf-donde {
+      font-size: 12.8px;
+      line-height: 1.5;
       color: var(--texto);
     }
 
@@ -305,7 +433,8 @@
       justify-content: center;
       padding: 20px;
       z-index: 1000;
-      cursor: zoom-out;
+      overflow: hidden;
+      touch-action: none;   /* dejamos que el JS maneje pinch / arrastre */
     }
     #lightbox[hidden] { display: none; }
     #lightbox img {
@@ -313,7 +442,14 @@
       max-height: 95%;
       border-radius: 10px;
       box-shadow: 0 10px 50px rgba(0,0,0,0.6);
+      cursor: zoom-in;
+      transform-origin: 0 0;
+      will-change: transform;
+      user-select: none;
+      -webkit-user-drag: none;
     }
+    #lightbox.zoom img { cursor: grab; }
+    #lightbox.arrastrando img { cursor: grabbing; }
     #lightbox .cerrar {
       position: absolute;
       top: 16px;
@@ -323,14 +459,47 @@
       line-height: 1;
       font-weight: 700;
       opacity: 0.85;
+      z-index: 2;
+      cursor: pointer;
+    }
+    #lightbox .ayuda-zoom {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #fff;
+      font-size: 12.5px;
+      opacity: 0.7;
+      background: rgba(0,0,0,0.35);
+      padding: 6px 12px;
+      border-radius: 20px;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    #lightbox .nivel-zoom {
+      position: absolute;
+      top: 18px;
+      left: 22px;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      opacity: 0.8;
+      background: rgba(0,0,0,0.35);
+      padding: 4px 10px;
+      border-radius: 14px;
+      pointer-events: none;
     }
   </style>
 </head>
 <body>
   <div class="contenedor">
     <header>
-      <h1>🔬 Asistente de Benignidad</h1>
-      <p>Elegí el órgano, subí una imagen y la IA estima Benigno / Maligno.</p>
+      <img class="logo" src="{{ url_for('static', filename='logo.png') }}" alt="Logo"
+           onerror="this.style.display='none'">
+      <div class="titulos">
+        <h1>🔬 Asistente de Benignidad</h1>
+        <p>Elegí el órgano, subí una imagen y la IA estima Benigno / Maligno.</p>
+      </div>
     </header>
     <div class="cuerpo">
       {% if not organos %}
@@ -367,6 +536,17 @@
 
       <div id="error"></div>
 
+      <!-- Aviso: el organo elegido no coincide con el de la imagen -->
+      <div id="confirmacion" hidden>
+        <div class="conf-icono">⚠️</div>
+        <div class="conf-texto" id="conf-texto"></div>
+        <div class="conf-sims" id="conf-sims"></div>
+        <div class="conf-botones">
+          <button class="conf-btn analizar" id="conf-analizar">Analizar igual</button>
+          <button class="conf-btn cancelar" id="conf-cancelar">Elegir otra imagen</button>
+        </div>
+      </div>
+
       <div id="resultado">
         <div class="titulo-res">
           <div class="etiqueta" id="res-organo-etq">Órgano</div>
@@ -378,20 +558,21 @@
         <div id="explicacion" class="explicacion"></div>
 
         <div id="mapa-seccion" hidden>
-          <div class="mapa-titulo">🔥 ¿Dónde miró la IA?</div>
+          <div class="mapa-titulo">¿Dónde marca cáncer la IA?</div>
           <div class="mapa-comparacion">
             <figure class="mapa-fig">
               <img id="mapa-original" class="mapa-img ampliable" alt="Imagen original">
               <figcaption>Original (tocá para ampliar)</figcaption>
             </figure>
             <figure class="mapa-fig">
-              <img id="mapa-img" class="mapa-img ampliable" alt="Mapa de atención">
-              <figcaption>Mapa de atención (tocá para ampliar)</figcaption>
+              <img id="mapa-img" class="mapa-img ampliable" alt="Zonas malignas">
+              <figcaption>Zonas malignas (tocá para ampliar)</figcaption>
             </figure>
           </div>
           <div class="mapa-nota">
-            Las zonas en <strong>rojo</strong> son las que más pesaron en la decisión.
-            Muestra <em>dónde</em> se concentró la IA — no es una explicación médica en palabras.
+            Las zonas en <strong>rojo</strong> son las que el modelo considera
+            <strong>malignas</strong> (clasifica la imagen por regiones). Si el tejido es
+            benigno, casi no hay rojo. Es orientativo — <em>no</em> reemplaza al patólogo.
           </div>
         </div>
 
@@ -411,10 +592,12 @@
     </div>
   </div>
 
-  <!-- Imagen ampliada a pantalla completa -->
+  <!-- Imagen ampliada a pantalla completa (con zoom y arrastre) -->
   <div id="lightbox" hidden>
-    <span class="cerrar">&times;</span>
+    <span class="cerrar" id="lb-cerrar">&times;</span>
+    <span class="nivel-zoom" id="lb-nivel">1.0×</span>
     <img id="lightbox-img" alt="Imagen ampliada">
+    <div class="ayuda-zoom">Rueda o pellizcá para acercar · arrastrá para mover · doble clic para resetear</div>
   </div>
 
   <script>
@@ -432,16 +615,132 @@
     // Guardamos el archivo actual para poder mandarlo al feedback.
     let archivoActual = null;
 
-    // ----- Lightbox: tocar una imagen la amplía -----
+    // ----- Lightbox: tocar una imagen la amplía, con zoom y arrastre -----
     const lightbox = document.getElementById("lightbox");
     const lightboxImg = document.getElementById("lightbox-img");
+    const lbNivel = document.getElementById("lb-nivel");
+    const lbCerrar = document.getElementById("lb-cerrar");
+
+    const ZOOM_MIN = 1, ZOOM_MAX = 8;
+    let escala = 1;          // nivel de zoom actual
+    let despX = 0, despY = 0; // desplazamiento (pan) en px
+    let arrastrando = false, movio = false;
+    let ultimoX = 0, ultimoY = 0;
+
+    function aplicarTransform() {
+      lightboxImg.style.transform =
+        `translate(${despX}px, ${despY}px) scale(${escala})`;
+      lbNivel.textContent = escala.toFixed(1) + "×";
+      lightbox.classList.toggle("zoom", escala > 1);
+    }
+
+    function resetearZoom() {
+      escala = 1; despX = 0; despY = 0;
+      aplicarTransform();
+    }
+
+    function cerrarLightbox() {
+      lightbox.hidden = true;
+      resetearZoom();
+    }
 
     function ampliarImagen(src) {
       if (!src) return;
       lightboxImg.src = src;
       lightbox.hidden = false;
+      // Esperamos a que cargue para centrar el transform-origin.
+      resetearZoom();
     }
-    lightbox.addEventListener("click", () => { lightbox.hidden = true; });
+
+    // Zoom manteniendo fijo el punto de la imagen que está bajo (clientX, clientY).
+    // Trabajamos en coordenadas de pantalla; transform-origin es 0,0.
+    function zoomHaciaCliente(factor, clientX, clientY) {
+      const nueva = Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, escala * factor));
+      const f = nueva / escala;
+      if (f === 1) return;
+      const rect = lightboxImg.getBoundingClientRect();
+      // Ajuste del desplazamiento para que el punto bajo el cursor no se mueva.
+      despX += (clientX - rect.left) * (1 - f);
+      despY += (clientY - rect.top) * (1 - f);
+      escala = nueva;
+      if (escala === 1) { despX = 0; despY = 0; }
+      aplicarTransform();
+    }
+
+    // Rueda del mouse = zoom hacia el cursor.
+    lightbox.addEventListener("wheel", (e) => {
+      e.preventDefault();
+      const factor = e.deltaY < 0 ? 1.15 : 1 / 1.15;
+      zoomHaciaCliente(factor, e.clientX, e.clientY);
+    }, { passive: false });
+
+    // Arrastre para moverse cuando hay zoom.
+    lightbox.addEventListener("pointerdown", (e) => {
+      if (e.target === lbCerrar) return;
+      arrastrando = true; movio = false;
+      ultimoX = e.clientX; ultimoY = e.clientY;
+      lightbox.classList.add("arrastrando");
+      lightbox.setPointerCapture(e.pointerId);
+    });
+    lightbox.addEventListener("pointermove", (e) => {
+      if (!arrastrando || punteros.size >= 2) return;  // con 2 dedos manda el pinch
+      const dx = e.clientX - ultimoX;
+      const dy = e.clientY - ultimoY;
+      if (Math.abs(dx) > 3 || Math.abs(dy) > 3) movio = true;
+      if (escala > 1) {
+        despX += dx; despY += dy;
+        aplicarTransform();
+      }
+      ultimoX = e.clientX; ultimoY = e.clientY;
+    });
+    lightbox.addEventListener("pointerup", (e) => {
+      arrastrando = false;
+      lightbox.classList.remove("arrastrando");
+      // Clic simple (sin arrastrar) y sin zoom => cerrar.
+      if (!movio && escala === 1) cerrarLightbox();
+    });
+
+    // Doble clic: si está en 1× acerca a 2.5×, si no resetea.
+    lightboxImg.addEventListener("dblclick", (e) => {
+      e.preventDefault();
+      if (escala === 1) {
+        zoomHaciaCliente(2.5, e.clientX, e.clientY);
+      } else {
+        resetearZoom();
+      }
+    });
+
+    // La × siempre cierra.
+    lbCerrar.addEventListener("click", (e) => { e.stopPropagation(); cerrarLightbox(); });
+    // Escape cierra.
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !lightbox.hidden) cerrarLightbox();
+    });
+
+    // Pellizco (pinch) en pantallas táctiles.
+    const punteros = new Map();
+    let distInicial = 0, escalaInicial = 1;
+    lightbox.addEventListener("pointerdown", (e) => punteros.set(e.pointerId, e));
+    lightbox.addEventListener("pointermove", (e) => {
+      if (!punteros.has(e.pointerId)) return;
+      punteros.set(e.pointerId, e);
+      if (punteros.size === 2) {
+        const [a, b] = [...punteros.values()];
+        const dist = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
+        if (distInicial === 0) { distInicial = dist; escalaInicial = escala; return; }
+        const cx = (a.clientX + b.clientX) / 2;
+        const cy = (a.clientY + b.clientY) / 2;
+        const objetivo = Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, escalaInicial * (dist / distInicial)));
+        zoomHaciaCliente(objetivo / escala, cx, cy);
+      }
+    });
+    function finPuntero(e) {
+      punteros.delete(e.pointerId);
+      if (punteros.size < 2) distInicial = 0;
+    }
+    lightbox.addEventListener("pointerup", finPuntero);
+    lightbox.addEventListener("pointercancel", finPuntero);
+
     // Hacer ampliables las imágenes de la comparación y la vista previa.
     ["mapa-original", "mapa-img", "preview-img"].forEach((id) => {
       const el = document.getElementById(id);
@@ -479,10 +778,16 @@
       botonOtra.style.display = "none";
       preview.style.display = "none";
       cajaError.style.display = "none";
+      document.getElementById("confirmacion").hidden = true;
       zona.style.display = "block";
       inputArchivo.value = "";
       archivoActual = null;
     });
+
+    // Elementos del aviso de organo que no coincide.
+    const cajaConfirmacion = document.getElementById("confirmacion");
+    const confTexto = document.getElementById("conf-texto");
+    const confSims = document.getElementById("conf-sims");
 
     function manejarArchivo(archivo) {
       if (!archivo.type.startsWith("image/")) {
@@ -501,14 +806,23 @@
       lector.readAsDataURL(archivo);
 
       zona.style.display = "none";
+      enviarImagen(false);
+    }
+
+    // Envia la imagen actual a /predecir. Si 'forzar' es true, analiza aunque el
+    // organo no coincida.
+    function enviarImagen(forzar) {
+      if (!archivoActual) return;
       cajaError.style.display = "none";
+      cajaConfirmacion.hidden = true;
       resultado.style.display = "none";
       botonOtra.style.display = "none";
       cargando.style.display = "block";
 
       const datos = new FormData();
-      datos.append("imagen", archivo);
+      datos.append("imagen", archivoActual);
       datos.append("organo", organoSeleccionado());
+      if (forzar) datos.append("forzar", "1");
 
       fetch("/predecir", { method: "POST", body: datos })
         .then((r) => r.json().then((j) => ({ ok: r.ok, j })))
@@ -518,6 +832,10 @@
             mostrarError(j.error || "Ocurrió un error.");
             return;
           }
+          if (j.confirmacion_requerida) {
+            mostrarConfirmacion(j.verificacion);
+            return;
+          }
           mostrarResultado(j);
         })
         .catch(() => {
@@ -525,6 +843,40 @@
           mostrarError("No se pudo conectar con el servidor.");
         });
     }
+
+    // Muestra el aviso de que el organo elegido no coincide con la imagen.
+    function mostrarConfirmacion(verif) {
+      const elegido = verif.organo_seleccionado;
+      if (!verif.evaluable) {
+        confTexto.innerHTML =
+          `La imagen <strong>no parece una muestra histológica</strong> de un órgano ` +
+          `conocido. Elegiste «${elegido}».<br>¿Querés analizarla igual como «${elegido}»?`;
+      } else {
+        const det = verif.organo_detectado;
+        confTexto.innerHTML =
+          `Elegiste «<strong>${elegido}</strong>», pero la imagen se parece más a ` +
+          `«<strong>${det}</strong>».<br>¿Querés analizarla igual como «${elegido}»?`;
+      }
+      // Detalle de similitudes por organo.
+      if (verif.similitudes && verif.similitudes.length) {
+        confSims.textContent = "Parecido: " +
+          verif.similitudes.map((s) => `${s.organo} ${s.valor}%`).join(" · ");
+      } else {
+        confSims.textContent = "";
+      }
+      cajaConfirmacion.hidden = false;
+    }
+
+    document.getElementById("conf-analizar").addEventListener("click", () => {
+      enviarImagen(true);   // el profesional confirmó: analizar igual
+    });
+    document.getElementById("conf-cancelar").addEventListener("click", () => {
+      cajaConfirmacion.hidden = true;
+      preview.style.display = "none";
+      zona.style.display = "block";
+      inputArchivo.value = "";
+      archivoActual = null;
+    });
 
     function mostrarResultado(datos) {
       const org = datos.organo ? datos.organo : "Muestra";
@@ -537,10 +889,34 @@
       document.getElementById("res-conf").textContent =
         "Confianza: " + datos.confianza + "%";
 
-      // Texto que explica la decisión
+      // Mini-informe de apoyo (dos modelos independientes + concordancia)
       const elExplicacion = document.getElementById("explicacion");
-      if (datos.explicacion) {
-        elExplicacion.textContent = datos.explicacion;
+      const inf = datos.informe;
+      if (inf && typeof inf === "object") {
+        const esMalP = (inf.principal.clase || "").toLowerCase().includes("malig");
+        const esMalS = (inf.segunda.clase || "").toLowerCase().includes("malig");
+        const colP = esMalP ? "#dc2626" : "#16a34a";
+        const colS = esMalS ? "#dc2626" : "#16a34a";
+        const claseConc = inf.concuerdan ? "conc-ok" : "conc-warn";
+        let html = "";
+        html += `<div class="inf-titulo">🧾 Informe automático de apoyo</div>`;
+        // Las dos opiniones, lado a lado.
+        html += `<div class="inf-modelos">`;
+        html += `<div class="inf-modelo">
+                   <span class="inf-modelo-etq">${inf.principal.modelo}</span>
+                   <span class="inf-modelo-clase" style="color:${colP}">${inf.principal.clase}</span>
+                   <span class="inf-modelo-val">${inf.principal.valor}%</span>
+                 </div>`;
+        html += `<div class="inf-modelo">
+                   <span class="inf-modelo-etq">${inf.segunda.modelo}</span>
+                   <span class="inf-modelo-clase" style="color:${colS}">${inf.segunda.clase}</span>
+                   <span class="inf-modelo-val">${inf.segunda.valor}%</span>
+                 </div>`;
+        html += `</div>`;
+        html += `<div class="inf-conc ${claseConc}">${inf.concordancia}</div>`;
+        if (inf.donde) html += `<div class="inf-donde">${inf.donde}</div>`;
+        if (inf.limite) html += `<p class="exp-limite">⚠️ ${inf.limite}</p>`;
+        elExplicacion.innerHTML = html;
         elExplicacion.style.display = "block";
       } else {
         elExplicacion.style.display = "none";

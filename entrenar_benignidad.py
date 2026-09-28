@@ -19,8 +19,19 @@ from PIL import Image
 
 import motor
 
-# ---- Que organo entrenar ----
-ORGANO = sys.argv[1] if len(sys.argv) > 1 else "Pulmon"
+# ---- Argumentos: organo y banderas ----
+#   python entrenar_benignidad.py Mama                 -> recortes puros (clasico)
+#   python entrenar_benignidad.py Mama --panoramica    -> corta panoramicas en parches
+#   python entrenar_benignidad.py Mama --panoramica --parche=256
+argumentos = [a for a in sys.argv[1:] if not a.startswith("--")]
+banderas = [a for a in sys.argv[1:] if a.startswith("--")]
+ORGANO = argumentos[0] if argumentos else "Pulmon"
+PANORAMICA = "--panoramica" in banderas
+PARCHE_PX = 224
+for b in banderas:
+    if b.startswith("--parche="):
+        PARCHE_PX = int(b.split("=")[1])
+
 CARPETA_DATOS = os.path.join("Datos", ORGANO)
 ARCHIVO_MODELO = f"modelo_{ORGANO.lower()}.pth"
 
@@ -60,18 +71,37 @@ print(f"\nOrgano: {ORGANO}")
 print("Clases detectadas:", clases)
 print("Total de fotos:", len(rutas))
 
-# ---- Extraer features con Phikon (una sola vez por imagen) ----
+# ---- Extraer features con Phikon ----
 print("\nCargando Phikon y extrayendo caracteristicas (esto puede tardar)...")
 t0 = time.time()
-features = []
-for i in range(0, len(rutas), TAM_LOTE):
-    lote_rutas = rutas[i:i + TAM_LOTE]
-    imagenes = [Image.open(r).convert("RGB") for r in lote_rutas]
-    feats = motor.extraer_features(imagenes)   # [lote, 768]
-    features.append(feats)
-    print(f"  {min(i + TAM_LOTE, len(rutas))}/{len(rutas)} imagenes", end="\r")
-X = torch.cat(features, dim=0)                 # [N, 768]
-y = torch.tensor(etiquetas)
+
+if PANORAMICA:
+    # Cada imagen (panoramica) se corta en parches; cada parche hereda la etiqueta
+    # de su carpeta. Asi el modelo aprende a la MISMA escala en que despues analiza.
+    print(f"Modo PANORAMICA: corto cada imagen en parches de {PARCHE_PX}px "
+          f"(descarto fondo).")
+    feats_list, etq_list = [], []
+    for n, (r, lab) in enumerate(zip(rutas, etiquetas), 1):
+        img = Image.open(r).convert("RGB")
+        parches = motor.recortar_en_parches(img, tam=PARCHE_PX, solapamiento=0.25)
+        for k in range(0, len(parches), TAM_LOTE):
+            fe = motor.extraer_features(parches[k:k + TAM_LOTE])
+            feats_list.append(fe)
+            etq_list.extend([lab] * fe.shape[0])
+        print(f"  {n}/{len(rutas)} imagenes -> {len(etq_list)} parches", end="\r")
+    X = torch.cat(feats_list, dim=0)
+    y = torch.tensor(etq_list)
+else:
+    features = []
+    for i in range(0, len(rutas), TAM_LOTE):
+        lote_rutas = rutas[i:i + TAM_LOTE]
+        imagenes = [Image.open(r).convert("RGB") for r in lote_rutas]
+        feats = motor.extraer_features(imagenes)   # [lote, 768]
+        features.append(feats)
+        print(f"  {min(i + TAM_LOTE, len(rutas))}/{len(rutas)} imagenes", end="\r")
+    X = torch.cat(features, dim=0)                 # [N, 768]
+    y = torch.tensor(etiquetas)
+
 print(f"\nFeatures listas en {time.time() - t0:.0f}s. Shape: {tuple(X.shape)}")
 
 # ---- Separar train / validacion ----
@@ -105,12 +135,31 @@ for epoca in range(EPOCAS):
         print(f"Epoca {epoca + 1}/{EPOCAS} - perdida: {perdida.item():.3f} "
               f"- precision train: {prec_train:.1f}% - precision validacion: {prec_val:.1f}%")
 
+# ---- Prototipo de organo (para verificar que la imagen sea de este organo) ----
+# Es el "centro" del organo. Se calcula SIEMPRE con las imagenes ENTERAS (la identidad
+# del organo es una propiedad global), aunque el clasificador se haya entrenado con
+# parches. Asi la verificacion de organo funciona igual en modo clasico y panoramico.
+import torch.nn.functional as F
+if PANORAMICA:
+    feats_enteras = []
+    for i in range(0, len(rutas), TAM_LOTE):
+        ims = [Image.open(r).convert("RGB") for r in rutas[i:i + TAM_LOTE]]
+        feats_enteras.append(motor.extraer_features(ims))
+    Xw = torch.cat(feats_enteras, dim=0)
+else:
+    Xw = X   # en modo clasico X ya son features de imagenes enteras
+prototipo = F.normalize(Xw.mean(0, keepdim=True), dim=1)[0]   # vector [768]
+
 # ---- Guardar ----
 torch.save({
     "estado": clasificador.state_dict(),
     "clases": clases,
     "organo": ORGANO,
     "base": motor.MODELO_BASE,     # que motor de features usa este modelo
+    "prototipo": prototipo,        # centro del organo en el espacio de features
+    "panoramica": PANORAMICA,      # si se entreno cortando panoramicas en parches
+    "parche_px": PARCHE_PX if PANORAMICA else None,  # escala del parche
 }, ARCHIVO_MODELO)
 print(f"\nListo. Modelo guardado en '{ARCHIVO_MODELO}'")
-print(f"Motor base: {motor.MODELO_BASE} | Clases: {clases}")
+print(f"Motor base: {motor.MODELO_BASE} | Clases: {clases}"
+      + (f" | PANORAMICA parche={PARCHE_PX}px" if PANORAMICA else ""))
