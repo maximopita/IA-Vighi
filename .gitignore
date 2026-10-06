@@ -9,3 +9,6 @@ venv/
 
 # Config local de Claude Code
 .claude/settings.local.json
+
+# Salidas sueltas del motor celular
+motor_celular/salidas/

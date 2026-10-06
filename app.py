@@ -14,6 +14,13 @@
 import io
 import os
 import glob
+import json
+import shutil
+import subprocess
+import tempfile
+import threading
+import time
+import uuid
 from datetime import datetime
 
 import torch
@@ -152,7 +159,13 @@ def construir_informe(organo, probabilidades_ordenadas, frac_maligno, segunda, c
 
     # Dónde marcó cáncer: fracción de la muestra que el modelo considera maligna.
     pct = round(frac_maligno * 100)
-    if frac_maligno < 0.05:
+    if frac_maligno < 0.05 and _es_maligno(principal_clase):
+        # El diagnostico global dice maligno pero el analisis por regiones no delimito
+        # nada: NO decir que el tejido es benigno, seria contradictorio.
+        donde = ("La imagen completa se clasificó como maligna, pero el análisis por "
+                 "regiones no pudo delimitar zonas concretas (el patrón parece difuso o "
+                 "depende de la imagen entera). Conviene revisar toda la muestra.")
+    elif frac_maligno < 0.05:
         donde = ("El mapa no marcó zonas malignas: el tejido se ve de aspecto benigno "
                  "en toda la muestra.")
     elif frac_maligno < 0.40:
@@ -211,15 +224,16 @@ def predecir_imagen(organo, imagen_pil, forzar=False):
     if verif and not verif["coincide"] and not forzar:
         return {"confirmacion_requerida": True, "verificacion": verif}
 
-    # Mapa de MALIGNIDAD: clasifica region por region y marca en rojo lo maligno.
-    grid = motor.mapa_malignidad(imagen_pil, clasificador, idx_maligno, tam=parche_px)
-    overlay, frac_maligno = motor.overlay_malignidad(imagen_pil, grid)
+    # Mapa de MALIGNIDAD: clasifica por ventanas superpuestas y delinea lo maligno.
+    mapa, probs_ventanas = motor.mapa_malignidad(
+        imagen_pil, clasificador, idx_maligno, tam=parche_px)
+    overlay, frac_maligno = motor.overlay_malignidad(imagen_pil, mapa)
 
     # Diagnostico general (headline):
     if es_pano:
         # En panoramico, la muestra es Maligna si hay al menos una region claramente
         # maligna; la confianza la da la region mas sospechosa.
-        p_mal = float(grid.max())
+        p_mal = float(probs_ventanas.max())
         if p_mal >= 0.5:
             idx_diag, conf = idx_maligno, p_mal
         else:
@@ -255,9 +269,126 @@ def predecir_imagen(organo, imagen_pil, forzar=False):
     return resultado
 
 
+# ---------------------------------------------------------------------------
+# Motor CELULAR (nucleo por nucleo): HoVer-Net via TIAToolbox, en su propio entorno
+# de Python 3.12 (motor_celular/nucleos.py). Se lanza como proceso aparte y en segundo
+# plano, porque tarda de ~40 s a varios minutos en CPU. Opcional: si el entorno no
+# esta instalado en esta PC, el boton se deshabilita.
+# ---------------------------------------------------------------------------
+CELULAR_PY = os.environ.get("VIGHI_CELULAR_PYTHON", r"C:\vighi-venvs\celular\Scripts\python.exe")
+CELULAR_SCRIPT = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                              "motor_celular", "nucleos.py")
+trabajos = {}                    # id -> estado del analisis celular
+trabajos_lock = threading.Lock()
+
+
+def celular_disponible():
+    return os.path.isfile(CELULAR_PY) and os.path.isfile(CELULAR_SCRIPT)
+
+
+def _correr_celular(id_):
+    """Hilo: lanza el proceso del motor celular y deja el resultado en 'trabajos'."""
+    t = trabajos[id_]
+    entorno = {k: v for k, v in os.environ.items() if k not in ("PYTHONPATH", "PYTHONHOME")}
+    entorno["PYTHONIOENCODING"] = "utf-8"
+    try:
+        proc = subprocess.Popen(
+            [CELULAR_PY, CELULAR_SCRIPT, t["entrada"], "--png", t["png"],
+             "--json", t["json"], "--progreso", t["prog"]],
+            stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True,
+            encoding="utf-8", errors="replace", env=entorno,
+            creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
+        t["proc"] = proc
+        if t["estado"] == "cancelado":      # se cancelo justo antes de arrancar
+            proc.kill()
+        salida, _ = proc.communicate()
+        if t["estado"] == "cancelado":
+            return
+        if proc.returncode == 0 and os.path.isfile(t["json"]) and os.path.isfile(t["png"]):
+            with open(t["json"], encoding="utf-8") as f:
+                t["resumen"] = json.load(f)
+            t["imagen"] = motor.a_data_url(Image.open(t["png"]))
+            t["estado"] = "listo"
+        else:
+            t["estado"] = "error"
+            t["error"] = "El motor celular fallo. " + (salida or "")[-400:].strip()
+    except Exception as e:
+        if t["estado"] != "cancelado":
+            t["estado"] = "error"
+            t["error"] = f"No se pudo iniciar el motor celular: {e}"
+    finally:
+        t["fin"] = time.time()
+        shutil.rmtree(t["carpeta"], ignore_errors=True)
+
+
 @app.route("/")
 def inicio():
-    return render_template("index.html", organos=lista_organos())
+    return render_template("index.html", organos=lista_organos(),
+                           celular=celular_disponible())
+
+
+@app.route("/celular", methods=["POST"])
+def celular_iniciar():
+    if not celular_disponible():
+        return jsonify({"error": "El motor celular no está instalado en esta PC "
+                                 "(falta el entorno de Python 3.12 con TIAToolbox)."}), 503
+    if "imagen" not in request.files or request.files["imagen"].filename == "":
+        return jsonify({"error": "No se recibio ninguna imagen."}), 400
+    try:
+        imagen = Image.open(io.BytesIO(request.files["imagen"].read())).convert("RGB")
+    except Exception:
+        return jsonify({"error": "El archivo no es una imagen valida."}), 400
+
+    with trabajos_lock:
+        if any(t["estado"] == "corriendo" for t in trabajos.values()):
+            return jsonify({"error": "Ya hay un análisis celular en curso. Esperá a que "
+                                     "termine (o cancelalo) antes de lanzar otro."}), 409
+        # Limpieza: nos quedamos solo con los ultimos resultados.
+        for k in sorted(trabajos, key=lambda k: trabajos[k]["inicio"])[:-3]:
+            trabajos.pop(k, None)
+        id_ = uuid.uuid4().hex
+        carpeta = tempfile.mkdtemp(prefix="vighi_cel_")
+        entrada = os.path.join(carpeta, "entrada.png")
+        imagen.save(entrada, "PNG")
+        trabajos[id_] = {
+            "estado": "corriendo", "inicio": time.time(), "carpeta": carpeta,
+            "entrada": entrada, "png": os.path.join(carpeta, "marcada.png"),
+            "json": os.path.join(carpeta, "resumen.json"),
+            "prog": os.path.join(carpeta, "progreso.json"),
+        }
+    threading.Thread(target=_correr_celular, args=(id_,), daemon=True).start()
+    return jsonify({"job": id_})
+
+
+@app.route("/celular/estado/<id_>")
+def celular_estado(id_):
+    t = trabajos.get(id_)
+    if not t:
+        return jsonify({"estado": "desconocido"}), 404
+    salida = {"estado": t["estado"], "segundos": round((t.get("fin") or time.time()) - t["inicio"])}
+    if t["estado"] == "corriendo":
+        try:
+            with open(t["prog"], encoding="utf-8") as f:
+                p = json.load(f)
+            salida.update(hecho=p["hecho"], total=p["total"])
+        except (OSError, ValueError, KeyError):
+            salida.update(hecho=0, total=0)      # todavia cargando el modelo
+    elif t["estado"] == "listo":
+        salida.update(imagen=t["imagen"], resumen=t["resumen"])
+    elif t["estado"] == "error":
+        salida["error"] = t["error"]
+    return jsonify(salida)
+
+
+@app.route("/celular/cancelar/<id_>", methods=["POST"])
+def celular_cancelar(id_):
+    t = trabajos.get(id_)
+    if t and t["estado"] == "corriendo":
+        t["estado"] = "cancelado"
+        proc = t.get("proc")
+        if proc and proc.poll() is None:
+            proc.kill()
+    return jsonify({"ok": True})
 
 
 @app.route("/predecir", methods=["POST"])

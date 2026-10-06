@@ -4,21 +4,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IA CAP Vighi</title>
+  <!-- Tipografias institucionales (igual que la web). Sin internet cae a la del sistema. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
   <style>
+    /* Paleta institucional CAP Vighi (mismos tokens que NUEVAWEB, en hex):
+       clinical-blue #431866 | clinical-accent #a657ed | clinical-slate #665e77
+       clinical-surface #f8f5fb. Los nombres de variable se mantienen. */
     :root {
-      --azul: #7c3aed;          /* violeta principal */
-      --azul-oscuro: #6d28d9;   /* violeta mas profundo */
-      --azul-claro: #f5f3ff;    /* violeta muy claro (fondos) */
-      --gris: #6b6580;          /* gris con matiz violaceo */
-      --gris-claro: #f4f1fb;    /* gris claro violaceo */
-      --borde: #d6ccf0;         /* borde lila */
-      --verde: #7c3aed;         /* acentos = mismo violeta */
-      --texto: #2e1065;         /* texto violeta muy oscuro */
+      --azul: #431866;          /* clinical-blue: violeta institucional profundo */
+      --azul-oscuro: #2f0f4a;   /* hover / mas profundo */
+      --azul-claro: #f8f5fb;    /* clinical-surface: fondos suaves */
+      --acento: #a657ed;        /* clinical-accent: violeta vivo */
+      --acento-suave: #eee2fe;
+      --gris: #665e77;          /* clinical-slate: texto secundario */
+      --gris-claro: #f8f5fb;
+      --borde: #e3dcec;         /* borde suave con matiz violeta */
+      --verde: #431866;         /* acentos de texto = violeta institucional */
+      --texto: #431866;
+      --radio: 12px;            /* radius 0.75rem de la web */
+      --fuente: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-      background: linear-gradient(160deg, #f5f3ff, #ede9fe);
+      font-family: var(--fuente);
+      -webkit-font-smoothing: antialiased;
+      background: var(--azul-claro);
       color: var(--texto);
       min-height: 100vh;
       display: flex;
@@ -26,35 +39,43 @@
       align-items: flex-start;
       padding: 32px 16px;
     }
+    ::selection { background: rgba(166, 87, 237, 0.3); }
     .contenedor {
       width: 100%;
       max-width: 620px;
       background: #fff;
-      border-radius: 18px;
-      box-shadow: 0 10px 40px rgba(15, 23, 42, 0.10);
+      border: 1px solid var(--borde);
+      border-radius: var(--radio);
+      box-shadow: 0 10px 40px rgba(67, 24, 102, 0.10);
       overflow: hidden;
     }
     header {
-      background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+      background: var(--azul);
       color: #fff;
-      padding: 24px 28px;
+      padding: 22px 28px;
       display: flex;
       align-items: center;
       gap: 16px;
+      border-bottom: 3px solid var(--acento);
     }
     header .logo {
-      width: 54px;
-      height: 54px;
-      border-radius: 50%;
-      background: #fff;
+      height: 52px;
+      width: auto;
+      max-width: 64px;
       object-fit: contain;
-      padding: 4px;
       flex-shrink: 0;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
     }
     header .titulos { min-width: 0; }
+    header .eyebrow {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--acento);
+      margin-bottom: 4px;
+    }
     header h1 { font-size: 22px; font-weight: 700; }
-    header p { font-size: 14px; opacity: 0.9; margin-top: 4px; }
+    header p { font-size: 14px; color: rgba(255, 255, 255, 0.78); margin-top: 4px; }
     .cuerpo { padding: 28px; }
 
     .aviso {
@@ -74,7 +95,7 @@
 
     #zona {
       border: 2px dashed var(--borde);
-      border-radius: 14px;
+      border-radius: var(--radio);
       padding: 40px 20px;
       text-align: center;
       cursor: pointer;
@@ -82,8 +103,8 @@
       background: var(--gris-claro);
     }
     #zona:hover, #zona.activo {
-      border-color: var(--azul);
-      background: var(--azul-claro);
+      border-color: var(--acento);
+      background: var(--acento-suave);
     }
     #zona .icono { font-size: 46px; }
     #zona p { color: var(--gris); margin-top: 10px; font-size: 15px; }
@@ -110,7 +131,7 @@
     .spinner {
       width: 32px; height: 32px;
       border: 3px solid var(--borde);
-      border-top-color: var(--azul);
+      border-top-color: var(--acento);
       border-radius: 50%;
       margin: 0 auto 8px;
       animation: girar 0.8s linear infinite;
@@ -122,9 +143,9 @@
       text-align: center;
       margin-bottom: 20px;
     }
-    .titulo-res .etiqueta { font-size: 13px; color: var(--gris); text-transform: uppercase; letter-spacing: 0.5px; }
+    .titulo-res .etiqueta { font-family: var(--mono); font-size: 11px; color: var(--acento); text-transform: uppercase; letter-spacing: 0.14em; }
     .titulo-res .organo { font-size: 30px; font-weight: 800; color: var(--azul); margin-top: 2px; }
-    .titulo-res .conf { font-size: 15px; color: var(--verde); font-weight: 600; margin-top: 4px; }
+    .titulo-res .conf { font-size: 15px; color: var(--gris); font-weight: 600; margin-top: 4px; }
 
     .barra-fila { margin-bottom: 12px; }
     .barra-top { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 4px; }
@@ -138,13 +159,13 @@
     }
     .barra-relleno {
       height: 100%;
-      background: linear-gradient(90deg, #c4b5fd, #7c3aed);
+      background: linear-gradient(90deg, #d9c2f7, #a657ed);
       border-radius: 8px;
       width: 0;
       transition: width 0.6s ease;
     }
     .barra-fila:first-child .barra-relleno {
-      background: linear-gradient(90deg, #a78bfa, #6d28d9);
+      background: linear-gradient(90deg, #a657ed, #431866);
     }
 
     .disclaimer {
@@ -184,12 +205,13 @@
       border: 1.5px solid var(--borde);
       background: #fff;
       color: var(--texto);
+      font-family: inherit;
       font-size: 14px;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.12s ease;
     }
-    .btn-fb:hover:not(:disabled) { border-color: var(--azul); background: var(--azul-claro); }
+    .btn-fb:hover:not(:disabled) { border-color: var(--acento); background: var(--azul-claro); }
     .btn-fb:disabled { opacity: 0.5; cursor: default; }
     .btn-fb.si { border-color: #86efac; }
     .btn-fb.si:hover:not(:disabled) { background: #f0fdf4; border-color: #16a34a; }
@@ -248,33 +270,38 @@
       flex-wrap: wrap;
       margin-top: 16px;
     }
+    /* Botones tipo pildora, como los CTA de la web */
     .conf-btn {
-      padding: 11px 18px;
-      border-radius: 10px;
+      padding: 11px 22px;
+      border-radius: 999px;
+      font-family: inherit;
       font-size: 14px;
       font-weight: 700;
       cursor: pointer;
       border: 1.5px solid transparent;
+      transition: all 0.12s ease;
     }
     .conf-btn.analizar { background: var(--azul); color: #fff; }
     .conf-btn.analizar:hover { background: var(--azul-oscuro); }
     .conf-btn.cancelar { background: #fff; border-color: var(--borde); color: var(--texto); }
-    .conf-btn.cancelar:hover { background: var(--gris-claro); }
+    .conf-btn.cancelar:hover { background: var(--azul-claro); border-color: var(--acento); }
 
     .boton-otra {
       display: none;
       width: 100%;
       margin-top: 20px;
       padding: 12px;
-      background: var(--gris-claro);
-      border: 1px solid var(--borde);
-      border-radius: 10px;
+      background: var(--azul);
+      border: 1px solid var(--azul);
+      border-radius: 999px;
+      font-family: inherit;
       font-size: 15px;
       font-weight: 600;
-      color: var(--texto);
+      color: #fff;
       cursor: pointer;
+      transition: background 0.12s ease;
     }
-    .boton-otra:hover { background: #e2e8f0; }
+    .boton-otra:hover { background: var(--azul-oscuro); }
 
     .selector-organo {
       display: flex;
@@ -298,13 +325,13 @@
       font-weight: 600;
       cursor: pointer;
     }
-    .selector-organo select:focus { outline: none; border-color: var(--azul); }
+    .selector-organo select:focus { outline: none; border-color: var(--acento); box-shadow: 0 0 0 3px var(--acento-suave); }
 
     .explicacion {
       margin-top: 18px;
       padding: 14px 16px;
       background: var(--azul-claro);
-      border-left: 4px solid var(--azul);
+      border-left: 4px solid var(--acento);
       border-radius: 8px;
       font-size: 13.5px;
       line-height: 1.55;
@@ -319,11 +346,12 @@
     }
     .explicacion .exp-etq {
       display: block;
-      font-size: 11.5px;
-      font-weight: 700;
+      font-family: var(--mono);
+      font-size: 10.5px;
+      font-weight: 500;
       text-transform: uppercase;
-      letter-spacing: 0.4px;
-      color: var(--azul-oscuro);
+      letter-spacing: 0.12em;
+      color: var(--acento);
       margin-bottom: 1px;
     }
     .explicacion .exp-limite {
@@ -337,7 +365,7 @@
     .inf-titulo {
       font-size: 14px;
       font-weight: 800;
-      color: var(--azul-oscuro);
+      color: var(--azul);
       margin-bottom: 12px;
     }
     .inf-modelos {
@@ -358,10 +386,11 @@
       gap: 2px;
     }
     .inf-modelo-etq {
-      font-size: 11px;
-      font-weight: 700;
+      font-family: var(--mono);
+      font-size: 10.5px;
+      font-weight: 500;
       text-transform: uppercase;
-      letter-spacing: 0.3px;
+      letter-spacing: 0.1em;
       color: var(--gris);
     }
     .inf-modelo-clase { font-size: 18px; font-weight: 800; }
@@ -422,12 +451,49 @@
       line-height: 1.4;
     }
 
+    /* Analisis celular */
+    #celular-bloque { margin-top: 20px; text-align: center; }
+    .btn-celular {
+      width: 100%;
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 1.5px solid var(--azul);
+      background: #fff;
+      color: var(--azul);
+      font-family: inherit;
+      font-size: 14.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.12s ease;
+    }
+    .btn-celular:hover:not(:disabled) { background: var(--azul); color: #fff; }
+    .btn-celular:disabled { opacity: 0.45; cursor: not-allowed; }
+    .celular-ayuda { font-size: 12.5px; color: var(--gris); margin-top: 8px; line-height: 1.45; }
+    #celular-progreso { margin-top: 14px; }
+    #celular-progreso[hidden], #celular-error[hidden], #celular-resultado[hidden] { display: none; }
+    #celular-prog-texto { font-size: 13.5px; color: var(--gris); margin: 4px 0 10px; }
+    #celular-progreso .conf-btn { margin-top: 12px; }
+    #celular-error {
+      margin-top: 14px; background: #fee2e2; border: 1px solid #fca5a5; color: #991b1b;
+      padding: 12px 16px; border-radius: 10px; font-size: 13.5px; text-align: left;
+    }
+    #celular-resultado { margin-top: 18px; }
+    .celular-fig { margin: 0 auto; }
+    .celular-fig figcaption { font-size: 12px; font-weight: 600; color: var(--gris); margin-top: 6px; }
+    .celular-leyenda {
+      display: flex; flex-wrap: wrap; gap: 6px 14px; justify-content: center;
+      margin-top: 12px; font-size: 12.5px; color: var(--texto);
+    }
+    .celular-leyenda .item { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; }
+    .celular-leyenda .punto { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+    .celular-resumen { margin-top: 10px; font-size: 14px; font-weight: 700; color: var(--azul); }
+
     /* Imágenes ampliables al tocarlas */
     .ampliable { cursor: zoom-in; }
     #lightbox {
       position: fixed;
       inset: 0;
-      background: rgba(15, 5, 40, 0.9);
+      background: rgba(30, 8, 48, 0.92);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -494,10 +560,11 @@
 <body>
   <div class="contenedor">
     <header>
-      <img class="logo" src="{{ url_for('static', filename='logo.png') }}" alt="Logo"
+      <img class="logo" src="{{ url_for('static', filename='logo-blanco.png') }}" alt="CAP Vighi"
            onerror="this.style.display='none'">
       <div class="titulos">
-        <h1>🔬 Asistente de Benignidad</h1>
+        <div class="eyebrow">CAP Vighi · IA de apoyo</div>
+        <h1>Asistente de Benignidad</h1>
         <p>Elegí el órgano, subí una imagen y la IA estima Benigno / Maligno.</p>
       </div>
     </header>
@@ -565,14 +632,54 @@
               <figcaption>Original (tocá para ampliar)</figcaption>
             </figure>
             <figure class="mapa-fig">
-              <img id="mapa-img" class="mapa-img ampliable" alt="Zonas malignas">
-              <figcaption>Zonas malignas (tocá para ampliar)</figcaption>
+              <img id="mapa-img" class="mapa-img ampliable" alt="Zonas sospechosas">
+              <figcaption>Zonas sospechosas (tocá para ampliar)</figcaption>
             </figure>
           </div>
           <div class="mapa-nota">
-            Las zonas en <strong>rojo</strong> son las que el modelo considera
-            <strong>malignas</strong> (clasifica la imagen por regiones). Si el tejido es
-            benigno, casi no hay rojo. Es orientativo — <em>no</em> reemplaza al patólogo.
+            El <strong>contorno rojo</strong> delimita las zonas que el modelo considera
+            <strong>sospechosas</strong> (analiza la imagen por ventanas superpuestas); el
+            interior <strong>más intenso</strong> marca las de mayor confianza. Si el tejido es
+            benigno, no se marca nada. Es orientativo — <em>no</em> reemplaza al patólogo.
+          </div>
+        </div>
+
+        <!-- Motor celular: marca cada nucleo (HoVer-Net). Opcional y lento, por eso es un boton. -->
+        <div id="celular-bloque">
+          <button class="btn-celular" id="btn-celular" {% if not celular %}disabled{% endif %}>
+            🔬 Análisis celular (núcleo por núcleo)
+          </button>
+          <div class="celular-ayuda" id="celular-ayuda">
+            {% if celular %}
+            Marca <strong>cada núcleo</strong> y lo clasifica (neoplásico, inflamatorio,
+            conectivo…). Tarda entre 1 y 3 minutos.
+            {% else %}
+            No disponible en esta PC: falta instalar el motor celular
+            (entorno de Python 3.12 con TIAToolbox).
+            {% endif %}
+          </div>
+          <div id="celular-progreso" hidden>
+            <div class="spinner"></div>
+            <div id="celular-prog-texto"></div>
+            <div class="barra-fondo"><div class="barra-relleno" id="celular-prog-barra"></div></div>
+            <button class="conf-btn cancelar" id="celular-cancelar">Cancelar</button>
+          </div>
+          <div id="celular-error" hidden></div>
+          <div id="celular-resultado" hidden>
+            <div class="mapa-titulo">Análisis celular</div>
+            <figure class="celular-fig">
+              <img id="celular-img" class="mapa-img ampliable" alt="Núcleos marcados">
+              <figcaption>Núcleos marcados (tocá para ampliar)</figcaption>
+            </figure>
+            <div class="celular-leyenda" id="celular-leyenda"></div>
+            <div class="celular-resumen" id="celular-resumen"></div>
+            <div class="mapa-nota">
+              Cada contorno es un núcleo detectado por un modelo distinto e independiente
+              (HoVer-Net, entrenado en PanNuke). <strong>«Neoplásico» es la clase que el
+              modelo asigna a cada núcleo, no un diagnóstico</strong>: en tejido benigno con
+              núcleos muy juntos puede marcar de más. Es orientativo — <em>no</em>
+              reemplaza al patólogo. (Pesos de uso no comercial.)
+            </div>
           </div>
         </div>
 
@@ -742,7 +849,7 @@
     lightbox.addEventListener("pointercancel", finPuntero);
 
     // Hacer ampliables las imágenes de la comparación y la vista previa.
-    ["mapa-original", "mapa-img", "preview-img"].forEach((id) => {
+    ["mapa-original", "mapa-img", "preview-img", "celular-img"].forEach((id) => {
       const el = document.getElementById(id);
       if (el) {
         el.classList.add("ampliable");
@@ -773,7 +880,126 @@
       if (inputArchivo.files.length) manejarArchivo(inputArchivo.files[0]);
     });
 
-    botonOtra.addEventListener("click", () => {
+    // ----- Analisis celular (nucleo por nucleo) -----
+    const btnCelular = document.getElementById("btn-celular");
+    const celProgreso = document.getElementById("celular-progreso");
+    const celProgTexto = document.getElementById("celular-prog-texto");
+    const celProgBarra = document.getElementById("celular-prog-barra");
+    const celError = document.getElementById("celular-error");
+    const celResultado = document.getElementById("celular-resultado");
+    let jobCelular = null, timerCelular = null;
+
+    const TIPOS_CEL = [   // orden, etiqueta y color (mismos colores que dibuja el motor)
+      ["Neoplasico", "Neoplásico", "rgb(230,25,30)"],
+      ["Inflamatorio", "Inflamatorio", "rgb(40,170,70)"],
+      ["Conectivo", "Conectivo", "rgb(40,100,230)"],
+      ["Muerto", "Muerto", "rgb(240,190,20)"],
+      ["Epitelial no neoplasico", "Epitelial no neoplásico", "rgb(0,190,210)"],
+    ];
+
+    // Corta el seguimiento, cancela el proceso si sigue corriendo y limpia la pantalla.
+    function celularReset() {
+      clearInterval(timerCelular); timerCelular = null;
+      if (jobCelular) {
+        fetch("/celular/cancelar/" + jobCelular, { method: "POST" }).catch(() => {});
+        jobCelular = null;
+      }
+      celProgreso.hidden = true; celError.hidden = true; celResultado.hidden = true;
+      btnCelular.style.display = "";
+      btnCelular.disabled = btnCelular.dataset.noDisponible === "1";
+      btnCelular.textContent = "🔬 Análisis celular (núcleo por núcleo)";
+    }
+    if (btnCelular.disabled) btnCelular.dataset.noDisponible = "1";
+
+    function celularError(mensaje) {
+      clearInterval(timerCelular); timerCelular = null; jobCelular = null;
+      celProgreso.hidden = true;
+      celError.textContent = mensaje; celError.hidden = false;
+      btnCelular.style.display = ""; btnCelular.disabled = false;
+    }
+
+    function celularMostrar(j) {
+      clearInterval(timerCelular); timerCelular = null; jobCelular = null;
+      celProgreso.hidden = true;
+      const r = j.resumen;
+      document.getElementById("celular-img").src = j.imagen;
+      const ley = document.getElementById("celular-leyenda");
+      ley.innerHTML = "";
+      TIPOS_CEL.forEach(([clave, etiqueta, color]) => {
+        const n = r.conteo[clave] || 0;
+        if (!n) return;
+        const it = document.createElement("span");
+        it.className = "item";
+        it.innerHTML = `<span class="punto" style="background:${color}"></span>${etiqueta}: ${n}`;
+        ley.appendChild(it);
+      });
+      const neo = r.conteo["Neoplasico"] || 0;
+      let txt = r.total
+        ? `${r.total} núcleos detectados · ${neo} neoplásicos (${Math.round(r.frac_neoplasico * 100)}%)`
+        : "No se detectaron núcleos (¿la zona es solo fondo?).";
+      if (r.reducida_de) {
+        txt += ` — imagen reducida de ${r.reducida_de[0]}×${r.reducida_de[1]} a ${r.tam[0]}×${r.tam[1]} para acotar el tiempo`;
+      }
+      document.getElementById("celular-resumen").textContent = txt;
+      celResultado.hidden = false;
+      btnCelular.style.display = "";
+      btnCelular.disabled = false;
+      btnCelular.textContent = "🔬 Repetir análisis celular";
+    }
+
+    function consultarCelular(id) {
+      fetch("/celular/estado/" + id)
+        .then((r) => r.json())
+        .then((j) => {
+          if (id !== jobCelular) return;            // ya se cancelo / se lanzo otro
+          if (j.estado === "corriendo") {
+            if (j.total > 0) {
+              celProgTexto.textContent = `Analizando núcleos… ${j.hecho}/${j.total} zonas · ${j.segundos}s`;
+              celProgBarra.style.width = Math.round(100 * j.hecho / j.total) + "%";
+            } else {
+              celProgTexto.textContent = `Cargando el modelo… ${j.segundos}s`;
+            }
+          } else if (j.estado === "listo") {
+            celularMostrar(j);
+          } else if (j.estado === "error") {
+            celularError(j.error || "El análisis celular falló.");
+          } else if (j.estado === "desconocido") {
+            celularError("Se perdió el análisis celular (¿se reinició la app?).");
+          }
+        })
+        .catch(() => {});                           // un fallo de red aislado: reintenta en 2 s
+    }
+
+    btnCelular.addEventListener("click", () => {
+      if (!archivoActual || btnCelular.disabled) return;
+      celError.hidden = true; celResultado.hidden = true;
+      btnCelular.style.display = "none";
+      celProgBarra.style.width = "0%";
+      celProgTexto.textContent = "Iniciando…";
+      celProgreso.hidden = false;
+      const datos = new FormData();
+      datos.append("imagen", archivoActual);
+      fetch("/celular", { method: "POST", body: datos })
+        .then((r) => r.json().then((j) => ({ ok: r.ok, j })))
+        .then(({ ok, j }) => {
+          if (!ok) { celularError(j.error || "No se pudo iniciar el análisis celular."); return; }
+          jobCelular = j.job;
+          const id = j.job;
+          timerCelular = setInterval(() => consultarCelular(id), 2000);
+          consultarCelular(id);
+        })
+        .catch(() => celularError("No se pudo conectar con el servidor."));
+    });
+
+    document.getElementById("celular-cancelar").addEventListener("click", celularReset);
+
+    // Vuelve a la pantalla inicial (elegir otra imagen). Cancela un analisis en curso
+    // para que su resultado no aparezca despues.
+    let controladorPeticion = null;
+    function reiniciar() {
+      if (controladorPeticion) { controladorPeticion.abort(); controladorPeticion = null; }
+      celularReset();
+      cargando.style.display = "none";
       resultado.style.display = "none";
       botonOtra.style.display = "none";
       preview.style.display = "none";
@@ -782,7 +1008,13 @@
       zona.style.display = "block";
       inputArchivo.value = "";
       archivoActual = null;
-    });
+    }
+
+    botonOtra.addEventListener("click", reiniciar);
+
+    // Al cambiar de organo, la imagen ya analizada deja de valer: se cierra y se pide otra.
+    const selectorOrgano = document.getElementById("organo");
+    if (selectorOrgano) selectorOrgano.addEventListener("change", reiniciar);
 
     // Elementos del aviso de organo que no coincide.
     const cajaConfirmacion = document.getElementById("confirmacion");
@@ -824,7 +1056,9 @@
       datos.append("organo", organoSeleccionado());
       if (forzar) datos.append("forzar", "1");
 
-      fetch("/predecir", { method: "POST", body: datos })
+      if (controladorPeticion) controladorPeticion.abort();
+      controladorPeticion = new AbortController();
+      fetch("/predecir", { method: "POST", body: datos, signal: controladorPeticion.signal })
         .then((r) => r.json().then((j) => ({ ok: r.ok, j })))
         .then(({ ok, j }) => {
           cargando.style.display = "none";
@@ -838,7 +1072,8 @@
           }
           mostrarResultado(j);
         })
-        .catch(() => {
+        .catch((err) => {
+          if (err && err.name === "AbortError") return;   // cancelado a proposito (reiniciar)
           cargando.style.display = "none";
           mostrarError("No se pudo conectar con el servidor.");
         });

@@ -198,56 +198,116 @@ def recortar_en_parches(imagen_pil, tam=224, solapamiento=0.0, saltar_fondo=True
     return parches or [img]
 
 
+MAX_VENTANAS = 144          # tope de ventanas en imagenes grandes (controla el tiempo en CPU)
+MAX_VENTANAS_CHICA = 64     # tope para imagenes chicas (< 1200 px): no necesitan tanto detalle
+# Elegidos midiendo sobre Pruebas/Colon (6 benignas + 6 malignas): con ventana 1/4 y
+# umbral 0.7 las benignas marcaron 0.9% (max 5%) y las malignas 99.9%. Con ventana 1/5
+# y umbral 0.5 las benignas marcaban 10.9% (max 38%): mas detalle = mas falsos positivos.
+UMBRAL_MALIGNO = 0.7  # probabilidad desde la cual una zona se marca como sospechosa
+UMBRAL_NUCLEO = 0.9   # zona de alta confianza (se marca mas fuerte)
+
+
+def _posiciones(largo, ventana, paso):
+    """Posiciones de inicio de las ventanas a lo largo de un eje, cubriendo el borde."""
+    if largo <= ventana:
+        return [0]
+    pos = list(range(0, largo - ventana + 1, paso))
+    if pos[-1] != largo - ventana:
+        pos.append(largo - ventana)
+    return pos
+
+
 @torch.no_grad()
-def mapa_malignidad(imagen_pil, clasificador, idx_maligno, grid=6, tam=None):
-    """Divide la imagen en una grilla y clasifica CADA region como benigna/maligna.
-    Devuelve un tensor [filas, cols] con la probabilidad de MALIGNO de cada region.
-    A diferencia del mapa de atencion (que muestra 'donde miro'), esto muestra
-    'donde considera que hay cancer': una imagen benigna queda casi sin marcar.
+def mapa_malignidad(imagen_pil, clasificador, idx_maligno, tam=None, max_lado=512, divisor=4):
+    """Mapa de malignidad de alta resolucion, por ventanas SUPERPUESTAS.
+    Desliza una ventana cuadrada por la imagen (con ~2/3 de solapamiento), clasifica
+    cada una como benigna/maligna y promedia las probabilidades en cada pixel
+    (cada ventana pesa un poco menos en su borde). Asi el mapa tiene detalle fino, sin el
+    aspecto de 'casilleros' de una grilla.
+    A diferencia del mapa de atencion ('donde miro'), esto muestra 'donde considera
+    que hay cancer'.
 
-    Si 'tam' (px por parche) se pasa, la grilla se calcula para que cada region
-    mida ~tam pixeles (asi coincide con la escala con que se entreno la panoramica).
-    Si no, usa una grilla fija de 'grid' x 'grid'."""
+    'tam' (px) es la escala con que se entreno un modelo panoramico; si no se pasa,
+    la ventana mide 1/'divisor' del lado menor de la imagen.
+    Devuelve (mapa, probs_ventanas):
+      mapa: tensor [Hs, Ws] en 0..1 (Hs, Ws = tamano de trabajo, lado mayor <= max_lado)
+      probs_ventanas: tensor [N] con la prob. de MALIGNO de cada ventana."""
     img = imagen_pil.convert("RGB")
     W, H = img.size
-    if tam:
-        cols = max(1, round(W / tam)); filas = max(1, round(H / tam))
-    else:
-        cols = filas = grid
-    cw, ch = W / cols, H / filas
-    # Cada region se agranda medio casillero para darle contexto al clasificador.
-    parches = []
-    for i in range(filas):
-        for j in range(cols):
-            x0 = max(0, int(j * cw - cw / 2)); y0 = max(0, int(i * ch - ch / 2))
-            x1 = min(W, int((j + 1) * cw + cw / 2)); y1 = min(H, int((i + 1) * ch + ch / 2))
-            parches.append(img.crop((x0, y0, x1, y1)))
+    ventana = int(tam) if tam else max(64, round(min(W, H) / divisor))
+    ventana = min(ventana, W, H)
+    paso = max(8, ventana // 3)
+    # Si saldrian demasiadas ventanas, agrandamos el paso hasta cumplir el tope.
+    tope = MAX_VENTANAS if max(W, H) > 1200 else MAX_VENTANAS_CHICA
+    while len(_posiciones(W, ventana, paso)) * len(_posiciones(H, ventana, paso)) > tope:
+        paso = int(paso * 1.15) + 1
+    xs, ys = _posiciones(W, ventana, paso), _posiciones(H, ventana, paso)
+    coords = [(x, y) for y in ys for x in xs]
 
-    feats = extraer_features(parches)               # [filas*cols, 768]
+    feats = extraer_features([img.crop((x, y, x + ventana, y + ventana)) for x, y in coords])
     probs = torch.softmax(clasificador(feats), dim=1)[:, idx_maligno]
-    return probs.reshape(filas, cols)               # [filas, cols] en 0..1
+
+    # Acumulamos en un lienzo reducido (lado mayor = max_lado) con peso casi plano.
+    s = min(1.0, max_lado / max(W, H))
+    Ws, Hs = max(1, round(W * s)), max(1, round(H * s))
+    v = max(2, round(ventana * s))
+    # Peso casi plano (borde suave): mantiene el detalle fino, sin redondear las zonas.
+    borde = max(1, v // 4)
+    perfil = np.ones(v); rampa = np.linspace(0.2, 1, borde, endpoint=False)
+    perfil[:borde] = rampa; perfil[-borde:] = rampa[::-1]
+    peso_v = np.outer(perfil, perfil)
+    acum = np.zeros((Hs, Ws)); peso = np.zeros((Hs, Ws))
+    for (x, y), p in zip(coords, probs.tolist()):
+        x0, y0 = int(round(x * s)), int(round(y * s))
+        x1, y1 = min(Ws, x0 + v), min(Hs, y0 + v)
+        w = peso_v[:y1 - y0, :x1 - x0]
+        acum[y0:y1, x0:x1] += p * w
+        peso[y0:y1, x0:x1] += w
+    mapa = torch.from_numpy(acum / np.maximum(peso, 1e-6)).float()
+    return mapa, probs
 
 
-def overlay_malignidad(imagen_pil, grid_probs, alpha=0.55, max_lado=512):
-    """Superpone en ROJO las zonas que el modelo considera malignas.
-    Las regiones benignas quedan casi sin teñir. Devuelve (imagen PIL, fraccion
-    de la muestra marcada como maligna)."""
-    img = imagen_pil.convert("RGB")
-    if max(img.size) > max_lado:
-        escala = max_lado / max(img.size)
-        img = img.resize((int(img.width * escala), int(img.height * escala)))
+def _contorno(mascara_bool, grosor=2):
+    """Borde de una mascara booleana (numpy), de 'grosor' px aprox."""
+    m = Image.fromarray((mascara_bool * 255).astype("uint8"))
+    k = 2 * grosor + 1
+    interior = np.array(m.filter(ImageFilter.MinFilter(k))) > 0
+    return mascara_bool & ~interior
 
-    W, H = img.size
-    m = grid_probs.numpy()
-    m = Image.fromarray((m * 255).astype("uint8")).resize((W, H), Image.BICUBIC)
-    radio = max(4, max(W, H) // 40)
-    m = np.array(m.filter(ImageFilter.GaussianBlur(radio))) / 255.0
+
+def overlay_malignidad(imagen_pil, mapa, max_lado=512):
+    """Marca las zonas malignas con CONTORNOS rojos y un tinte suave adentro, en vez
+    de una mancha difusa. Doble nivel: el contorno fino delimita lo sospechoso
+    (prob >= UMBRAL_MALIGNO) y el interior mas intenso, lo de alta confianza
+    (>= UMBRAL_NUCLEO).
+    Lo benigno queda sin tocar. Devuelve (imagen PIL, fraccion marcada como maligna)."""
+    Hs, Ws = mapa.shape
+    img = imagen_pil.convert("RGB").resize((Ws, Hs), Image.LANCZOS)
+    m = mapa.numpy()
+
+    # Limpieza de la mascara: se descartan manchitas y se suaviza el borde escalonado.
+    def limpiar(mask):
+        im = Image.fromarray((mask * 255).astype("uint8"))
+        r = max(1, max(Ws, Hs) // 170)
+        im = im.filter(ImageFilter.MinFilter(2 * r + 1)).filter(ImageFilter.MaxFilter(2 * r + 1))
+        im = im.filter(ImageFilter.ModeFilter(2 * r + 1))
+        return np.array(im) > 0
+
+    sospechoso = limpiar(m >= UMBRAL_MALIGNO)
+    nucleo = limpiar(m >= UMBRAL_NUCLEO) & sospechoso
 
     base = np.array(img).astype(float) / 255.0
-    rojo = np.zeros_like(base); rojo[..., 0] = 1.0
-    a = alpha * m[..., None]
-    over = (1 - a) * base + a * rojo
-    frac = float((grid_probs > 0.5).float().mean())
+    rojo = np.array([0.90, 0.10, 0.12])
+    tinte = np.where(nucleo, 0.34, np.where(sospechoso, 0.16, 0.0))[..., None]
+    over = (1 - tinte) * base + tinte * rojo
+
+    grosor = max(1, max(Ws, Hs) // 260)
+    borde = _contorno(sospechoso, grosor)
+    over[borde] = rojo
+    borde_n = _contorno(nucleo, grosor) & ~borde
+    over[borde_n] = np.array([0.55, 0.0, 0.10])   # rojo oscuro: nucleo de alta confianza
+
+    frac = float(sospechoso.mean())
     return Image.fromarray((np.clip(over, 0, 1) * 255).astype("uint8")), frac
 
 
