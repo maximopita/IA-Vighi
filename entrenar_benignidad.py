@@ -140,6 +140,7 @@ for epoca in range(EPOCAS):
 # del organo es una propiedad global), aunque el clasificador se haya entrenado con
 # parches. Asi la verificacion de organo funciona igual en modo clasico y panoramico.
 import torch.nn.functional as F
+import random as _random
 if PANORAMICA:
     feats_enteras = []
     for i in range(0, len(rutas), TAM_LOTE):
@@ -150,13 +151,45 @@ else:
     Xw = X   # en modo clasico X ya son features de imagenes enteras
 prototipo = F.normalize(Xw.mean(0, keepdim=True), dim=1)[0]   # vector [768]
 
+# Segundo prototipo a OTRA escala, para reconocer el organo en recortes Y en campos
+# amplios (si no, un colon ancho se confunde con un organo entrenado en panoramicas).
+# Se decide por el TAMANO REAL de las imagenes (no por la bandera 'panoramica').
+_random.seed(0)
+_sin_fb = [r for r in rutas if "feedback" not in r.lower()]
+_otros_feats = []
+_muestra = Image.open(_sin_fb[0]); _es_ancho = max(_muestra.size) >= 1200
+if _es_ancho:
+    # imagenes anchas (panoramicas reales) -> patron nativo 'ancho'; agregamos 'chico'.
+    for p in _sin_fb[:40]:
+        im = Image.open(p).convert("RGB"); W, H = im.size
+        for _ in range(4):
+            if W > 768 and H > 768:
+                x = _random.randint(0, W - 768); y = _random.randint(0, H - 768)
+                _otros_feats.append(im.crop((x, y, x + 768, y + 768)))
+            else:
+                _otros_feats.append(im.resize((768, 768)))
+else:
+    # ya tenemos patron 'chico' (tiles); agregamos uno 'ancho' con mosaicos 3x3.
+    for _ in range(25):
+        mos = Image.new("RGB", (1536, 1536))
+        for k in range(9):
+            c = Image.open(_random.choice(_sin_fb)).convert("RGB").resize((512, 512))
+            mos.paste(c, ((k % 3) * 512, (k // 3) * 512))
+        _otros_feats.append(mos)
+_Xo = []
+for i in range(0, len(_otros_feats), TAM_LOTE):
+    _Xo.append(motor.extraer_features(_otros_feats[i:i + TAM_LOTE]))
+prototipo_otro = F.normalize(torch.cat(_Xo, 0).mean(0, keepdim=True), dim=1)[0]
+prototipos = [prototipo, prototipo_otro]   # [nativo, otra-escala]
+
 # ---- Guardar ----
 torch.save({
     "estado": clasificador.state_dict(),
     "clases": clases,
     "organo": ORGANO,
     "base": motor.MODELO_BASE,     # que motor de features usa este modelo
-    "prototipo": prototipo,        # centro del organo en el espacio de features
+    "prototipo": prototipo,        # compat: centro del organo (escala nativa)
+    "prototipos": prototipos,      # varios patrones (chico + ancho) para la verificacion
     "panoramica": PANORAMICA,      # si se entreno cortando panoramicas en parches
     "parche_px": PARCHE_PX if PANORAMICA else None,  # escala del parche
 }, ARCHIVO_MODELO)

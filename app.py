@@ -65,10 +65,15 @@ def cargar_modelos():
                 "organo": organo,
                 "parche_px": datos.get("parche_px"),   # escala si se entreno panoramica
             }
-            # Prototipo de organo (si el modelo lo tiene guardado).
-            proto = datos.get("prototipo")
-            if proto is not None:
-                prototipos[organo] = proto
+            # Prototipo(s) de organo. 'prototipos' es una lista (varios patrones:
+            # chico/tile y ancho/campo amplio); 'prototipo' es el formato viejo (uno).
+            protos_multi = datos.get("prototipos")
+            if protos_multi:
+                prototipos[organo] = list(protos_multi)
+            else:
+                proto = datos.get("prototipo")
+                if proto is not None:
+                    prototipos[organo] = [proto]
         except Exception as e:
             print(f"[!] No se pudo cargar '{ruta}': {e}")
     return len(modelos)

@@ -336,13 +336,21 @@ def crear_clasificador(clases):
 
 @torch.no_grad()
 def similitud_a_prototipos(features, prototipos):
-    """Similitud coseno de la imagen contra el prototipo (centro) de cada organo.
+    """Similitud coseno de la imagen contra el/los prototipo(s) de cada organo.
     features: tensor [1, 768] (CLS de Phikon).
-    prototipos: dict {nombre_organo: tensor [768]}.
+    prototipos: dict {nombre_organo: tensor [768]  O  lista de tensores [768]}.
+    Cada organo puede tener VARIOS prototipos (p. ej. uno 'chico'/tile y otro
+    'ancho'/campo amplio); se devuelve la MEJOR coincidencia. Asi reconoce el
+    organo tanto en recortes como en imagenes panoramicas.
     Devuelve dict {nombre_organo: similitud_coseno (float)}."""
     f = torch.nn.functional.normalize(features, dim=1)[0]   # [768]
     salida = {}
-    for organo, vec in prototipos.items():
-        v = torch.nn.functional.normalize(vec.reshape(-1), dim=0)
-        salida[organo] = float(torch.dot(f, v))
+    for organo, protos in prototipos.items():
+        if not isinstance(protos, (list, tuple)):
+            protos = [protos]
+        sims = []
+        for vec in protos:
+            v = torch.nn.functional.normalize(vec.reshape(-1), dim=0)
+            sims.append(float(torch.dot(f, v)))
+        salida[organo] = max(sims) if sims else 0.0
     return salida
