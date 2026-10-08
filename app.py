@@ -64,6 +64,8 @@ def cargar_modelos():
                 "clases": clases,
                 "organo": organo,
                 "parche_px": datos.get("parche_px"),   # escala si se entreno panoramica
+                # temperatura de calibracion (>1 suaviza la confianza). 1.0 = sin ajuste.
+                "temperatura": float(datos.get("temperatura") or 1.0),
             }
             # Prototipo(s) de organo. 'prototipos' es una lista (varios patrones:
             # chico/tile y ancho/campo amplio); 'prototipo' es el formato viejo (uno).
@@ -89,19 +91,20 @@ def verificar_organo(organo_seleccionado, features):
     sims = motor.similitud_a_prototipos(features, prototipos)   # {organo: cos}
     sim_sel = sims[organo_seleccionado]
     argmax = max(sims, key=sims.get)
+    sim_best = sims[argmax]
 
-    # Criterio SEGURO (mejor pedir confirmacion que dejar pasar un organo equivocado):
-    # la imagen coincide si se parece CLARAMENTE al organo elegido, o si ese organo
-    # es el mas parecido de todos (con un minimo).
-    coincide = (sim_sel >= motor.UMBRAL_PROPIO) or \
-               (argmax == organo_seleccionado and sim_sel >= motor.UMBRAL_ORGANO)
+    # Criterio RELATIVO (no absoluto): las similitudes coseno de Phikon son todas altas
+    # (todo tejido se parece), asi que comparar sim_sel contra un umbral fijo deja pasar
+    # el organo equivocado. Lo confiable es el ORDEN: el organo elegido coincide si es el
+    # MAS parecido, o esta a un pelo (MARGEN) del mejor. Si otro organo gana claramente,
+    # avisamos (mejor pedir confirmacion que analizar con el filtro equivocado).
+    coincide = (argmax == organo_seleccionado) or \
+               (sim_best - sim_sel <= motor.MARGEN_ORGANO)
 
-    # Para el aviso: si no coincide, vemos si se parece a OTRO organo (mismatch) o a
-    # ninguno (no evaluable / OOD).
-    otros = {o: v for o, v in sims.items() if o != organo_seleccionado}
-    mejor_otro = max(otros, key=otros.get) if otros else None
-    evaluable = coincide or (mejor_otro is not None and otros[mejor_otro] >= motor.UMBRAL_ORGANO)
-    detectado = organo_seleccionado if coincide else (mejor_otro if evaluable else None)
+    # Para el aviso: si hay algun organo razonablemente parecido (por encima del piso),
+    # mostramos cual detectamos; si ni el mejor llega al piso, es OOD (no evaluable).
+    evaluable = sim_best >= motor.UMBRAL_ORGANO
+    detectado = organo_seleccionado if coincide else (argmax if evaluable else None)
 
     # Similitudes como % legibles (softmax con temperatura sobre las cosenos).
     import torch as _t
@@ -187,6 +190,11 @@ def construir_informe(organo, probabilidades_ordenadas, frac_maligno, segunda, c
         "concuerdan": concuerdan,
         "concordancia": concordancia,
         "donde": donde,
+        "confianza_nota": (
+            f"El {conf}% es el grado de parecido con los casos de referencia, calibrado "
+            f"sobre ellos. Es confiable con imágenes parecidas a las de referencia; con "
+            f"imágenes de otra tinción, aumento o fuente puede estar sobreestimado."
+        ),
         "limite": (
             "Informe orientativo generado por IA (dos modelos de apoyo). No es un "
             "diagnóstico ni un razonamiento médico: la validación final es del profesional."
@@ -206,6 +214,7 @@ def predecir_imagen(organo, imagen_pil, forzar=False):
     clases = entrada["clases"]
     parche_px = entrada.get("parche_px")        # None = modelo clasico; nro = panoramico
     es_pano = parche_px is not None
+    temperatura = entrada.get("temperatura", 1.0)   # calibracion de la confianza
 
     # Limitar el tamano de imagenes muy grandes (panoramicas / whole-slide) para no
     # agotar la memoria al cortarlas en muchos parches.
@@ -231,14 +240,16 @@ def predecir_imagen(organo, imagen_pil, forzar=False):
 
     # Mapa de MALIGNIDAD: clasifica por ventanas superpuestas y delinea lo maligno.
     mapa, probs_ventanas = motor.mapa_malignidad(
-        imagen_pil, clasificador, idx_maligno, tam=parche_px)
+        imagen_pil, clasificador, idx_maligno, tam=parche_px, temperatura=temperatura)
     overlay, frac_maligno = motor.overlay_malignidad(imagen_pil, mapa)
 
     # Diagnostico general (headline):
     if es_pano:
-        # En panoramico, la muestra es Maligna si hay al menos una region claramente
-        # maligna; la confianza la da la region mas sospechosa.
-        p_mal = float(probs_ventanas.max())
+        # Agregacion ROBUSTA: usamos el pico del MAPA promediado (ventanas superpuestas),
+        # no la ventana suelta mas alta. Asi un unico parche falso-positivo no vuelve
+        # maligna toda la muestra: hace falta un FOCO (varias ventanas que se refuerzan
+        # entre si). Una ventana aislada se promedia con sus vecinas benignas y baja.
+        p_mal = float(mapa.max())
         if p_mal >= 0.5:
             idx_diag, conf = idx_maligno, p_mal
         else:
@@ -250,7 +261,8 @@ def predecir_imagen(organo, imagen_pil, forzar=False):
                           for i, c in enumerate(clases)]
     else:
         with torch.no_grad():
-            probabilidades_t = torch.nn.functional.softmax(clasificador(feats_rep)[0], dim=0)
+            probabilidades_t = torch.nn.functional.softmax(
+                clasificador(feats_rep)[0] / temperatura, dim=0)
         indice = probabilidades_t.argmax().item()
         diagnostico = clases[indice]
         confianza = round(probabilidades_t[indice].item() * 100, 2)
@@ -264,6 +276,7 @@ def predecir_imagen(organo, imagen_pil, forzar=False):
         "organo": entrada["organo"],
         "diagnostico": diagnostico,
         "confianza": confianza,
+        "frac_maligno": round(frac_maligno * 100, 1),   # % de area marcada maligna (zona)
         "probabilidades": probabilidades,
         "mapa_calor": motor.a_data_url(overlay),
         "verificacion": verif,   # None si no se pudo verificar; util si se forzo

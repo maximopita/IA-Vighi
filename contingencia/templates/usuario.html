@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block titulo %}Usuario{% endblock %}
+{% block contenido %}
+<h1>{{ 'Editar ' ~ u.iniciales if u else 'Nuevo usuario' }}</h1>
+<form method="post" class="tarjeta" style="max-width:640px">
+  <input type="hidden" name="_csrf" value="{{ csrf }}">
+  <div class="grilla">
+    <div><label>Iniciales *</label><input name="iniciales" value="{{ u.iniciales if u else '' }}" required style="text-transform:uppercase"></div>
+    <div><label>Nombre y apellido</label><input name="nombre" value="{{ u.nombre if u else '' }}"></div>
+  </div>
+  <label style="margin-top:12px">Sectores</label>
+  {% set mios = (u.sectores or '').split(',') if u else [] %}
+  <div class="grilla">
+    {% for k, n in SECTORES.items() %}
+      <label style="display:flex;gap:6px;align-items:center;color:inherit;font-size:14px">
+        <input type="checkbox" name="s_{{ k }}" value="1" {{ 'checked' if k in mios }}> {{ n }}</label>
+    {% endfor %}
+  </div>
+  <div class="grilla" style="margin-top:12px">
+    <label style="display:flex;gap:6px;align-items:center;color:inherit;font-size:14px">
+      <input type="checkbox" name="activo" value="1" {{ 'checked' if not u or u.activo }}> Activo</label>
+    <label style="display:flex;gap:6px;align-items:center;color:inherit;font-size:14px">
+      <input type="checkbox" name="admin" value="1" {{ 'checked' if u and u.admin }}> Administrador</label>
+  </div>
+  <label style="margin-top:12px">{{ 'Nueva clave temporal (dejar vacío para no cambiarla)' if u and u.clave_hash else 'Clave temporal (mínimo 8 caracteres)' }}</label>
+  <input name="clave" type="text" autocomplete="off">
+  <div class="muted">La persona la usa para entrar la primera vez y el sistema le pide que la cambie por una propia.</div>
+  <div class="acciones"><button class="btn">Guardar</button><a class="btn sec" href="{{ url_for('usuarios') }}">Cancelar</a></div>
+</form>
+{% endblock %}

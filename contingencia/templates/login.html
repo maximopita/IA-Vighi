@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block titulo %}Ingresar{% endblock %}
+{% block contenido %}
+<div class="tarjeta login">
+  <h1>Ingresar</h1>
+  <form method="post">
+    <input type="hidden" name="_csrf" value="{{ csrf }}">
+    <label>Iniciales</label>
+    <input name="iniciales" autofocus required autocomplete="username" style="text-transform:uppercase">
+    <label style="margin-top:10px">Clave</label>
+    <input name="clave" type="password" required autocomplete="current-password">
+    <div class="acciones"><button class="btn">Ingresar</button></div>
+  </form>
+  <p class="muted">¿No tenés clave? Pedísela al administrador del sistema.</p>
+</div>
+{% endblock %}

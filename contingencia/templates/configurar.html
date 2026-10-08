@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block titulo %}Configuración inicial{% endblock %}
+{% block contenido %}
+<div class="tarjeta login">
+  <h1>Configuración inicial</h1>
+  <p class="muted">Crear el usuario administrador. Esta pantalla solo aparece la primera vez y solo desde la PC servidor.</p>
+  <form method="post">
+    <input type="hidden" name="_csrf" value="{{ csrf }}">
+    <label>Iniciales</label><input name="iniciales" required style="text-transform:uppercase">
+    <label style="margin-top:10px">Nombre y apellido</label><input name="nombre">
+    <label style="margin-top:10px">Clave (mínimo 8 caracteres)</label><input name="clave" type="password" required autocomplete="new-password">
+    <label style="margin-top:10px">Repetir clave</label><input name="clave2" type="password" required autocomplete="new-password">
+    <div class="acciones"><button class="btn">Crear administrador</button></div>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,3943 @@
+[
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Arteria Temporal",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Arteria Temporal",
+  "tipo_muestra": "Resección"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Arteria Temporal",
+  "tipo_muestra": "Resección Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Cuello",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Cuello",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Ganglio",
+  "tipo_muestra": "Extirpacion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Ganglio",
+  "tipo_muestra": "Extirpación Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glándula Parótida",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glándula Parótida",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glándula Parótida",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glándula Parótida",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glándula Parótida",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glandula Submaxilar",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glandula Submaxilar",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glandula Submaxilar",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glandula Submaxilar",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glandula Submaxilar",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glándulas Paratiroides",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glándulas Paratiroides",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glándulas Paratiroides",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glándulas Paratiroides",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glándulas Paratiroides",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glándulas Salivales",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glándulas Salivales",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glándulas Salivales",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glándulas Salivales",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glándulas Salivales",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glándulas Sublingual",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glándulas Sublingual",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glándulas Sublingual",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glándulas Sublingual",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glándulas Sublingual",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glándulas Tiroides",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glándulas Tiroides",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glándulas Tiroides",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glándulas Tiroides",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glándulas Tiroides",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Mejilla",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Mejilla",
+  "tipo_muestra": "Resección"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Mejilla",
+  "tipo_muestra": "Resección Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Oido",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Oido",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Oido",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Oido",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Oido",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Ojo",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Ojo",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Ojo",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Ojo",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Ojo",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Taco en consulta",
+  "tipo_muestra": "Taco en consulta"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Taco en consulta",
+  "tipo_muestra": "Taco en consulta IMQ"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cardiovascular",
+  "sitio": "Arteria",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cardiovascular",
+  "sitio": "Corazón",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cardiovascular",
+  "sitio": "Corazón",
+  "tipo_muestra": "Resección"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cardiovascular",
+  "sitio": "Corazón",
+  "tipo_muestra": "Resección Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cardiovascular",
+  "sitio": "Pericardio",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cardiovascular",
+  "sitio": "Pericardio",
+  "tipo_muestra": "Líquido"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cardiovascular",
+  "sitio": "Pericardio",
+  "tipo_muestra": "Resección"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cardiovascular",
+  "sitio": "Válvula Aortica",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Cardiovascular",
+  "sitio": "Válvula Aortica",
+  "tipo_muestra": "Resección"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Dermatológica",
+  "sitio": "Piel",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Dermatológica",
+  "sitio": "Piel",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Dermatológica",
+  "sitio": "Piel",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Dermatológica",
+  "sitio": "Piel",
+  "tipo_muestra": "Resección"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Dermatológica",
+  "sitio": "Piel",
+  "tipo_muestra": "Resección Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Dermatológica",
+  "sitio": "Piel",
+  "tipo_muestra": "Taco en consulta"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Dermatológica",
+  "sitio": "Piel",
+  "tipo_muestra": "Taco en consulta IMQ"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Dermatológica",
+  "sitio": "Piel",
+  "tipo_muestra": "Técnica de Mohs"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Ano",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Ano",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Ano",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Ano",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Ano",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Apéndice",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Apéndice",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Apéndice",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Apéndice",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Apéndice",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Boca",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Boca",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Boca",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Boca",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Boca",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Cavidad Oral",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Cavidad Oral",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Cavidad Oral",
+  "tipo_muestra": "Resección maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Colon",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Colon",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Colon",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Colon",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Colon",
+  "tipo_muestra": "Resección maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Duodeno",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Duodeno",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Duodeno",
+  "tipo_muestra": "Resección"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Duodeno",
+  "tipo_muestra": "Resección Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Epiplon",
+  "tipo_muestra": "Resección"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Epiplon",
+  "tipo_muestra": "Resección maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Esófago",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Esófago",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Esófago",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Esófago",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Esófago",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Estómago",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Estómago",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Estómago",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Estómago",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Estómago",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Faringe",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Faringe",
+  "tipo_muestra": "Resección"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Faringe",
+  "tipo_muestra": "Resección maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Ganglio",
+  "tipo_muestra": "Extirpacion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Ganglio",
+  "tipo_muestra": "Extirpacion Maligno"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Hígado",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Hígado",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Hígado",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Hígado",
+  "tipo_muestra": "Módulo Hepático"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Hígado",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Hígado",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Intestino",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Intestino",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Intestino",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Intestino",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Intestino",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Intestino Delgado",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Intestino Delgado",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Intestino Delgado",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Intestino Delgado",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Intestino Delgado",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Lengua",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Lengua",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Lengua",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Lengua",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Lengua",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Pancreas",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Pancreas",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Pancreas",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Pancreas",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Pancreas",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Peritoneo",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Peritoneo",
+  "tipo_muestra": "Resección"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Peritoneo",
+  "tipo_muestra": "Resección Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Recto",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Recto",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Recto",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Recto",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Recto",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Taco en consulta",
+  "tipo_muestra": "Taco en consulta"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Taco en consulta",
+  "tipo_muestra": "Taco en consulta IMQ"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Vesícula",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Vesícula",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Vesícula",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Vesícula",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Digestiva",
+  "sitio": "Vesícula",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Endócrino",
+  "sitio": "Hipófisis",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Endócrino",
+  "sitio": "Hipófisis",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Endócrino",
+  "sitio": "Hipófisis",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Endócrino",
+  "sitio": "Hipófisis",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Endócrino",
+  "sitio": "Hipófisis",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Endócrino",
+  "sitio": "Pancreas",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Endócrino",
+  "sitio": "Pancreas",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Endócrino",
+  "sitio": "Pancreas",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Endócrino",
+  "sitio": "Pancreas",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Endócrino",
+  "sitio": "Pancreas",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Endócrino",
+  "sitio": "Suprarenales",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Endócrino",
+  "sitio": "Suprarenales",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Endócrino",
+  "sitio": "Suprarenales",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Endócrino",
+  "sitio": "Suprarenales",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Endócrino",
+  "sitio": "Suprarenales",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Deferentes",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Deferentes",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Deferentes",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Deferentes",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Deferentes",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Epididimo",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Epididimo",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Epididimo",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Epididimo",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Epididimo",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Escroto",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Escroto",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Escroto",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Escroto",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Escroto",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Ganglio",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Glande",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Glande",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Glande",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Glande",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Glande",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Pene",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Pene",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Pene",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Pene",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Pene",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Prostata",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Prostata",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Prostata",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Prostata",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Prostata",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Taco en consulta",
+  "tipo_muestra": "Taco en consulta"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Taco en consulta",
+  "tipo_muestra": "Taco en consulta IMQ"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Testículos",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Testículos",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Testículos",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Testículos",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Testículos",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Anexo",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Anexo",
+  "tipo_muestra": "Resección"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Anexo",
+  "tipo_muestra": "Resección Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Anexohisterectomia total",
+  "tipo_muestra": "Extirpacion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Anexohisterectomia total",
+  "tipo_muestra": "Extirpacion Oncológica"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Axila",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Axila",
+  "tipo_muestra": "Resección"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Axila",
+  "tipo_muestra": "Resección Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Cuello Uterino",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Cuello Uterino",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Cuello Uterino",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Cuello Uterino",
+  "tipo_muestra": "Resección"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Cuello Uterino",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Endometrio",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Endometrio",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Endometrio",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Endometrio",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Endometrio",
+  "tipo_muestra": "Reseccion maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Endometrio",
+  "tipo_muestra": "Taco en Consulta"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Epiplon",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Epiplon",
+  "tipo_muestra": "Reseccion maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Feto",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Ganglio Axilares",
+  "tipo_muestra": "Extirpación Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Ganglio Axilares",
+  "tipo_muestra": "Linfadenectomia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Ganglio Centinela",
+  "tipo_muestra": "Biopsia Radioquirurgica"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Ganglio Centinela",
+  "tipo_muestra": "Biopsia seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Ganglio Centinela",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Ganglio Centinela",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Ganglios",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Ganglios",
+  "tipo_muestra": "Resección"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Ganglios",
+  "tipo_muestra": "Resección Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Intraoperatoria",
+  "tipo_muestra": "Intraoperatoria"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Mama",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Mama",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Mama",
+  "tipo_muestra": "Biopsia Radioquirúrgica"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Mama",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Mama",
+  "tipo_muestra": "PAAF de Mama"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Mama",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Mama",
+  "tipo_muestra": "Resección Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Mama Masculina",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Mama Masculina",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Mama Masculina",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Mama Masculina",
+  "tipo_muestra": "Resección Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Mango Vaginal",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Mango Vaginal",
+  "tipo_muestra": "Resección"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Mango Vaginal",
+  "tipo_muestra": "Resección Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Ovario",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Ovario",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Ovario",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Ovario",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Ovario",
+  "tipo_muestra": "Resección Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Parametrios",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Peritoneo",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Peritoneo",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Peritoneo",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Peritoneo",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Peritoneo",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Piel",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Piel",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Piel",
+  "tipo_muestra": "Resección"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Piel",
+  "tipo_muestra": "Resección maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Taco en consulta",
+  "tipo_muestra": "Taco en consulta"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Taco en consulta",
+  "tipo_muestra": "Taco en consulta IMQ"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Testiculo",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Trompa",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Trompa",
+  "tipo_muestra": "Resección"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Trompa",
+  "tipo_muestra": "Resección Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Utero",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Utero",
+  "tipo_muestra": "Histerectomia Total"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Utero",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Utero",
+  "tipo_muestra": "Resección Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Utero",
+  "tipo_muestra": "Restos Ovulares"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Vagina",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Vagina",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Vagina",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Vagina",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Vagina",
+  "tipo_muestra": "Resección Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Vulva",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Vulva",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Vulva",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Vulva",
+  "tipo_muestra": "Resección"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ginecológica",
+  "sitio": "Vulva",
+  "tipo_muestra": "Resección Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Hematopoyetico",
+  "sitio": "Adenoides",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Hematopoyetico",
+  "sitio": "Adenoides",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Hematopoyetico",
+  "sitio": "Adenoides",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Hematopoyetico",
+  "sitio": "Adenoides",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Hematopoyetico",
+  "sitio": "Amigdala",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Hematopoyetico",
+  "sitio": "Amigdala",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Hematopoyetico",
+  "sitio": "Amigdala",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Hematopoyetico",
+  "sitio": "Amigdala",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Hematopoyetico",
+  "sitio": "Amigdala",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Hematopoyetico",
+  "sitio": "Bazo",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Hematopoyetico",
+  "sitio": "Bazo",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Hematopoyetico",
+  "sitio": "Bazo",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Hematopoyetico",
+  "sitio": "Bazo",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Hematopoyetico",
+  "sitio": "Bazo",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Hematopoyetico",
+  "sitio": "Ganglio Linfático",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Hematopoyetico",
+  "sitio": "Ganglio Linfático",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Hematopoyetico",
+  "sitio": "Ganglio Linfático",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Hematopoyetico",
+  "sitio": "Ganglio Linfático",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Hematopoyetico",
+  "sitio": "Ganglio Linfático",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Hematopoyetico",
+  "sitio": "Médula Osea",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Hematopoyetico",
+  "sitio": "Médula Osea",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Hematopoyetico",
+  "sitio": "Médula Osea",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Hematopoyetico",
+  "sitio": "Médula Osea",
+  "tipo_muestra": "Módulo MO"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Hematopoyetico",
+  "sitio": "Médula Osea",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Hematopoyetico",
+  "sitio": "Médula Osea",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Hematopoyetico",
+  "sitio": "Taco en consulta",
+  "tipo_muestra": "Taco en consulta"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Hematopoyetico",
+  "sitio": "Taco en consulta",
+  "tipo_muestra": "Taco en consulta IMQ"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Hematopoyetico",
+  "sitio": "Timo",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Hematopoyetico",
+  "sitio": "Timo",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Hematopoyetico",
+  "sitio": "Timo",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Hematopoyetico",
+  "sitio": "Timo",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Hematopoyetico",
+  "sitio": "Timo",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Hematopoyetico",
+  "sitio": "Vaciamiento Linfático",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Nefrología",
+  "sitio": "Riñon",
+  "tipo_muestra": "Microscopía Electrónica"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Nefrología",
+  "sitio": "Riñon",
+  "tipo_muestra": "Modulo Renal"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Nefrología",
+  "sitio": "Riñon",
+  "tipo_muestra": "Punción"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Nefrología",
+  "sitio": "Riñon",
+  "tipo_muestra": "Renal Microscopia Optica"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Articulación",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Articulación",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Cartilago",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Cartilago",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Cartilago",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Cartilago",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Cartilago",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Cuerpos Libres Intraaarticulares",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Cuerpos Libres Intraaarticulares",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Cuerpos Libres Intraaarticulares",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Cuerpos Libres Intraaarticulares",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Cuerpos Libres Intraaarticulares",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Discos Intervertebrales",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Discos Intervertebrales",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Discos Intervertebrales",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Discos Intervertebrales",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Discos Intervertebrales",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Hueso",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Hueso",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Hueso",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Hueso",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Hueso",
+  "tipo_muestra": "Resección Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Ligamentos",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Ligamentos",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Ligamentos",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Ligamentos",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Ligamentos",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Menisco",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Menisco",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Menisco",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Menisco",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Menisco",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Sinovial",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Sinovial",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Sinovial",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Sinovial",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Sinovial",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Taco en consulta",
+  "tipo_muestra": "Taco en consulta"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Uña",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Uña",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Uña",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Uña",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Uña",
+  "tipo_muestra": "Resección Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Bronquio",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Bronquio",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Bronquio",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Bronquio",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Bronquio",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Cuerdas Vocales",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Cuerdas Vocales",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Cuerdas Vocales",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Cuerdas Vocales",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Cuerdas Vocales",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Ganglio",
+  "tipo_muestra": "Resección"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Ganglio",
+  "tipo_muestra": "Resección Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Laringe",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Laringe",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Laringe",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Laringe",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Laringe",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Mediastino",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Mediastino",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Mediastino",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Mediastino",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Mediastino",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Nariz",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Nariz",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Nariz",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Nariz",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Nariz",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Pericardio",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Pericardio",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Pericardio",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Pericardio",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Pericardio",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Pleura",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Pleura",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Pleura",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Pleura",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Pleura",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Pulmon",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Pulmon",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Pulmon",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Pulmon",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Pulmon",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Taco en consulta",
+  "tipo_muestra": "Taco en consulta"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Taco en consulta",
+  "tipo_muestra": "Taco en consulta IMQ"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Traquea",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Traquea",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Traquea",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Traquea",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Respiratorio",
+  "sitio": "Traquea",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Sistema Nervioso Central",
+  "sitio": "Bulbo",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Sistema Nervioso Central",
+  "sitio": "Bulbo",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Sistema Nervioso Central",
+  "sitio": "Bulbo",
+  "tipo_muestra": "Biopsia Maligna (copia)"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Sistema Nervioso Central",
+  "sitio": "Bulbo",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Sistema Nervioso Central",
+  "sitio": "Bulbo",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Sistema Nervioso Central",
+  "sitio": "Bulbo",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Sistema Nervioso Central",
+  "sitio": "Cerebelo",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Sistema Nervioso Central",
+  "sitio": "Cerebelo",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Sistema Nervioso Central",
+  "sitio": "Cerebelo",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Sistema Nervioso Central",
+  "sitio": "Cerebelo",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Sistema Nervioso Central",
+  "sitio": "Cerebelo",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Sistema Nervioso Central",
+  "sitio": "Cerebro",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Sistema Nervioso Central",
+  "sitio": "Cerebro",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Sistema Nervioso Central",
+  "sitio": "Cerebro",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Sistema Nervioso Central",
+  "sitio": "Cerebro",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Sistema Nervioso Central",
+  "sitio": "Cerebro",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Sistema Nervioso Central",
+  "sitio": "Médula",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Sistema Nervioso Central",
+  "sitio": "Médula",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Sistema Nervioso Central",
+  "sitio": "Médula",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Sistema Nervioso Central",
+  "sitio": "Médula",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Sistema Nervioso Central",
+  "sitio": "Médula",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Sistema Nervioso Central",
+  "sitio": "Taco en consulta",
+  "tipo_muestra": "Taco en consulta"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Sistema Nervioso Central",
+  "sitio": "Taco en consulta",
+  "tipo_muestra": "Taco en consulta IMQ"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Tejidos Blandos",
+  "sitio": "Músculo",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Tejidos Blandos",
+  "sitio": "Músculo",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Tejidos Blandos",
+  "sitio": "Músculo",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Tejidos Blandos",
+  "sitio": "Músculo",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Tejidos Blandos",
+  "sitio": "Músculo",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Tejidos Blandos",
+  "sitio": "Nervio",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Tejidos Blandos",
+  "sitio": "Nervio",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Tejidos Blandos",
+  "sitio": "Nervio",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Tejidos Blandos",
+  "sitio": "Nervio",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Tejidos Blandos",
+  "sitio": "Taco en consulta",
+  "tipo_muestra": "Taco en consulta"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Tejidos Blandos",
+  "sitio": "Taco en consulta",
+  "tipo_muestra": "Taco en consulta IMQ"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Tejidos Blandos",
+  "sitio": "Tejidos Blandos",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Tejidos Blandos",
+  "sitio": "Tejidos Blandos",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Tejidos Blandos",
+  "sitio": "Tejidos Blandos",
+  "tipo_muestra": "Resección"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Tejidos Blandos",
+  "sitio": "Tejidos Blandos",
+  "tipo_muestra": "Resección Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Urológica",
+  "sitio": "Piel",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Urológica",
+  "sitio": "Piel",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Urológica",
+  "sitio": "Riñon",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Urológica",
+  "sitio": "Riñon",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Urológica",
+  "sitio": "Riñon",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Urológica",
+  "sitio": "Riñon",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Urológica",
+  "sitio": "Riñon",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Urológica",
+  "sitio": "Riñon",
+  "tipo_muestra": "Taco en consulta"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Urológica",
+  "sitio": "Sistema Pielocalicial",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Urológica",
+  "sitio": "Sistema Pielocalicial",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Urológica",
+  "sitio": "Sistema Pielocalicial",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Urológica",
+  "sitio": "Sistema Pielocalicial",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Urológica",
+  "sitio": "Sistema Pielocalicial",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Urológica",
+  "sitio": "Taco en consulta",
+  "tipo_muestra": "Taco en consulta"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Urológica",
+  "sitio": "Ureter",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Urológica",
+  "sitio": "Ureter",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Urológica",
+  "sitio": "Ureter",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Urológica",
+  "sitio": "Ureter",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Urológica",
+  "sitio": "Ureter",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Urológica",
+  "sitio": "Uretra",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Urológica",
+  "sitio": "Uretra",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Urológica",
+  "sitio": "Uretra",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Urológica",
+  "sitio": "Uretra",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Urológica",
+  "sitio": "Uretra",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Urológica",
+  "sitio": "Vejiga",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Urológica",
+  "sitio": "Vejiga",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Urológica",
+  "sitio": "Vejiga",
+  "tipo_muestra": "Biopsia Seriada"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Urológica",
+  "sitio": "Vejiga",
+  "tipo_muestra": "Reseccion"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Urológica",
+  "sitio": "Vejiga",
+  "tipo_muestra": "Reseccion Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Urológica",
+  "sitio": "Vesícula Seminal",
+  "tipo_muestra": "Biopsia"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Urológica",
+  "sitio": "Vesícula Seminal",
+  "tipo_muestra": "Biopsia Maligna"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Urológica",
+  "sitio": "Vesícula Seminal",
+  "tipo_muestra": "Resección"
+ },
+ {
+  "tipo": "BP",
+  "categoria": "Biopsias",
+  "subcategoria": "Urológica",
+  "sitio": "Vesícula Seminal",
+  "tipo_muestra": "Resección Maligna"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Ganglio",
+  "tipo_muestra": "PAAF"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Ganglio",
+  "tipo_muestra": "PAAF (AMEPBA)"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glándula Parótida",
+  "tipo_muestra": "PAAF"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glándula Parótida",
+  "tipo_muestra": "PAAF (AMEPBA)"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glandula Submaxilar",
+  "tipo_muestra": "Liquido"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glandula Submaxilar",
+  "tipo_muestra": "PAAF"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glándula Tiroides",
+  "tipo_muestra": "Liquido"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glándula Tiroides",
+  "tipo_muestra": "PAAF"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glándula Tiroides",
+  "tipo_muestra": "PAAF (AMEBPBA)"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glándulas Salivales",
+  "tipo_muestra": "Liquido"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Glándulas Salivales",
+  "tipo_muestra": "PAAF"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Cabeza y Cuello",
+  "sitio": "Intraoperatoria",
+  "tipo_muestra": "Intraoperatoria"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Cardiovascular",
+  "sitio": "Pericardio",
+  "tipo_muestra": "Líquido"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Dermatológica",
+  "sitio": "N/A",
+  "tipo_muestra": "Pendiente de definir"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Digestiva",
+  "sitio": "Abdomen",
+  "tipo_muestra": "Liquido"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Digestiva",
+  "sitio": "Ano",
+  "tipo_muestra": "Citología Anal"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Digestiva",
+  "sitio": "Esófago",
+  "tipo_muestra": "PAAF"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Digestiva",
+  "sitio": "Estómago",
+  "tipo_muestra": "PAAF"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Digestiva",
+  "sitio": "Estómago",
+  "tipo_muestra": "PAAF (AMEBPBA)"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Digestiva",
+  "sitio": "Hígado",
+  "tipo_muestra": "Liquido"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Digestiva",
+  "sitio": "Hígado",
+  "tipo_muestra": "PAAF"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Digestiva",
+  "sitio": "Hígado",
+  "tipo_muestra": "PAAF (AMEBPBA)"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Digestiva",
+  "sitio": "Intestino Delgado",
+  "tipo_muestra": "Pas"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Digestiva",
+  "sitio": "Intestino Delgado",
+  "tipo_muestra": "Tricromico de Masson"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Digestiva",
+  "sitio": "Intestino Delgado",
+  "tipo_muestra": "Ziehl Neelsen"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Digestiva",
+  "sitio": "Pancreas",
+  "tipo_muestra": "Liquido"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Digestiva",
+  "sitio": "Pancreas",
+  "tipo_muestra": "PAAF"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Digestiva",
+  "sitio": "Peritoneo",
+  "tipo_muestra": "Liquido"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Digestiva",
+  "sitio": "Peritoneo",
+  "tipo_muestra": "PAAF"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Digestiva",
+  "sitio": "Recto",
+  "tipo_muestra": "PAAF"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Endócrino",
+  "sitio": "N/A",
+  "tipo_muestra": "Pendiente de definir"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Prostata",
+  "tipo_muestra": "Liquido"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Genital Masculino",
+  "sitio": "Prostata",
+  "tipo_muestra": "PAAF"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Hematopoyetico",
+  "sitio": "Ganglio Linfático",
+  "tipo_muestra": "PAAF"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Hematopoyetico",
+  "sitio": "Médula Osea",
+  "tipo_muestra": "PAAF"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Nefrología",
+  "sitio": "N/A",
+  "tipo_muestra": "Pendiente de definir"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Articulación",
+  "tipo_muestra": "Liquido"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Discos Intervertebrales",
+  "tipo_muestra": "Liquido"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Hueso",
+  "tipo_muestra": "Liquido"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Hueso",
+  "tipo_muestra": "PAAF"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Hueso",
+  "tipo_muestra": "Presencia de Patólogo"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Hueso",
+  "tipo_muestra": "Punción"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Ortopedia y Traumatología",
+  "sitio": "Sinovial",
+  "tipo_muestra": "Liquido"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Respiratorio",
+  "sitio": "Broncoaspiración",
+  "tipo_muestra": "Liquido"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Respiratorio",
+  "sitio": "Bronquio",
+  "tipo_muestra": "Lavado Bronquial"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Respiratorio",
+  "sitio": "Bronquio",
+  "tipo_muestra": "Lavado Bronquio - Alveolar"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Respiratorio",
+  "sitio": "Mediastino",
+  "tipo_muestra": "Líquido"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Respiratorio",
+  "sitio": "Mediastino",
+  "tipo_muestra": "PAAF"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Respiratorio",
+  "sitio": "Pericardio",
+  "tipo_muestra": "Liquido"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Respiratorio",
+  "sitio": "Pleura",
+  "tipo_muestra": "Citología Pleural"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Respiratorio",
+  "sitio": "Pulmon",
+  "tipo_muestra": "BAL"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Respiratorio",
+  "sitio": "Pulmon",
+  "tipo_muestra": "Líquido"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Respiratorio",
+  "sitio": "Pulmon",
+  "tipo_muestra": "PAAF"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Respiratorio",
+  "sitio": "Pulmon",
+  "tipo_muestra": "PAAF (AMEBPBA)"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Respiratorio",
+  "sitio": "Traquea",
+  "tipo_muestra": "PAAF"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Sistema Nervioso Central",
+  "sitio": "Cerebro",
+  "tipo_muestra": "LCR"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Tejidos Blandos",
+  "sitio": "Articulación",
+  "tipo_muestra": "Liquido"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Tejidos Blandos",
+  "sitio": "Músculo",
+  "tipo_muestra": "PAAF (AMEBPBA)"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Tejidos Blandos",
+  "sitio": "Tejidos Blandos",
+  "tipo_muestra": "Liquido"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Tejidos Blandos",
+  "sitio": "Tejidos Blandos",
+  "tipo_muestra": "PAAF"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Tejidos Blandos",
+  "sitio": "Tejidos Blandos",
+  "tipo_muestra": "PAAF (AMEBPBA)"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Urológica",
+  "sitio": "Riñon",
+  "tipo_muestra": "Liquido"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Urológica",
+  "sitio": "Riñon",
+  "tipo_muestra": "PAAF"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Urológica",
+  "sitio": "Riñon",
+  "tipo_muestra": "PAAF (AMEBPBA)"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Urológica",
+  "sitio": "Ureter",
+  "tipo_muestra": "Liquido"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Urológica",
+  "sitio": "Uretra",
+  "tipo_muestra": "Liquido"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Urológica",
+  "sitio": "Uretra",
+  "tipo_muestra": "PAAF"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Urológica",
+  "sitio": "Uretra",
+  "tipo_muestra": "PAAF (AMEBPBA)"
+ },
+ {
+  "tipo": "CT",
+  "categoria": "Citologías",
+  "subcategoria": "Urológica",
+  "sitio": "Vejiga",
+  "tipo_muestra": "Citología Exfoliativa"
+ },
+ {
+  "tipo": "PAP",
+  "categoria": "Citologías",
+  "subcategoria": "Ginecológica",
+  "sitio": "Vagina",
+  "tipo_muestra": "Citología Endocervical"
+ },
+ {
+  "tipo": "PAP",
+  "categoria": "Citologías",
+  "subcategoria": "Ginecológica",
+  "sitio": "Vagina",
+  "tipo_muestra": "Citología Exocervical"
+ },
+ {
+  "tipo": "PAP",
+  "categoria": "Citologías",
+  "subcategoria": "Ginecológica",
+  "sitio": "Vagina",
+  "tipo_muestra": "Cúpula Vaginal"
+ },
+ {
+  "tipo": "PAP",
+  "categoria": "Citologías",
+  "subcategoria": "Ginecológica",
+  "sitio": "Vagina",
+  "tipo_muestra": "Liquido"
+ },
+ {
+  "tipo": "PAP",
+  "categoria": "Citologías",
+  "subcategoria": "Ginecológica",
+  "sitio": "Vagina",
+  "tipo_muestra": "PAAF"
+ }
+]

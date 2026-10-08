@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+{% block titulo %}{{ c.protocolo }}{% endblock %}
+{% macro listo_toggle(etapa) %}
+  {% if prox and prox[0] == etapa %}
+    <label style="display:inline-flex;gap:6px;align-items:center;margin:0">
+      <input type="checkbox" name="y_listo" value="1"> y marcar <b>{{ NOMBRE_ETAPA[etapa] }}</b> como lista ({{ yo.iniciales }})
+    </label>
+  {% endif %}
+{% endmacro %}
+{% block contenido %}
+<h1>{{ TIPOS[c.tipo] }} {{ c.protocolo }}
+  <span class="chip {{ 'anulado' if c.anulado else ('informado' if not prox) }}">{{ estado }}</span></h1>
+
+<div class="tarjeta">
+  <h2>Recorrido</h2>
+  <div class="pasos">
+    <div class="paso hecho"><div class="nom">Ingreso</div><div class="det">{{ c.creado_en | fh }}</div></div>
+    {% for k, nombre, sector in pasos %}
+      {% set e = etapas.get(k) %}
+      <div class="paso {{ 'hecho' if e else ('proximo' if prox and prox[0] == k) }}">
+        <div class="nom">{{ nombre }}</div>
+        {% if e %}<div class="det">✔ {{ e.iniciales }} · {{ e.fecha_hora | fh }}</div>
+        {% elif prox and prox[0] == k and not c.anulado %}
+          <form method="post" action="{{ url_for('marcar_listo', caso_id=c.id, etapa=k) }}" style="margin-top:6px">
+            <input type="hidden" name="_csrf" value="{{ csrf }}">
+            <button class="btn listo">✔ Listo ({{ yo.iniciales }})</button>
+          </form>
+          <div class="det">{{ SECTORES[sector] }}</div>
+        {% else %}<div class="det">{{ SECTORES[sector] }}</div>{% endif %}
+      </div>
+    {% endfor %}
+  </div>
+  {% if ultima and (ultima.usuario_id == yo.id or yo.admin) %}
+  <form method="post" action="{{ url_for('deshacer', caso_id=c.id) }}" class="acciones" data-confirmar="¿Deshacer la última etapa registrada ({{ NOMBRE_ETAPA[ultima.etapa] }})?">
+    <input type="hidden" name="_csrf" value="{{ csrf }}">
+    <button class="btn sec">Deshacer última etapa ({{ NOMBRE_ETAPA[ultima.etapa] }})</button>
+  </form>
+  {% endif %}
+</div>
+
+<div class="cols">
+<div>
+  {% if c.tipo == 'BP' %}
+  <div class="tarjeta" id="macro">
+    <h2>Macroscopía</h2>
+    <form method="post" action="{{ url_for('guardar_macro', caso_id=c.id) }}">
+      <input type="hidden" name="_csrf" value="{{ csrf }}">
+      <div class="grilla">
+        <div class="ancho"><label>Template (escribí para buscar)</label>
+          <input name="template" list="lista_macro" value="{{ macro.template if macro else '' }}" data-templates data-destino="desc_macro" autocomplete="off">
+          <datalist id="lista_macro">{% for t in tpl_macro %}<option value="{{ t.titulo }}" data-id="{{ t.id }}">{% endfor %}</datalist></div>
+        <div class="ancho"><label>Descripción macroscópica</label>
+          <textarea name="descripcion" id="desc_macro" rows="6">{{ macro.descripcion if macro else '' }}</textarea></div>
+        <div><label>N° cassettes</label><input name="cassettes" type="number" min="0" value="{{ macro.cassettes if macro and macro.cassettes is not none else '' }}"></div>
+      </div>
+      <div class="acciones"><button class="btn">Guardar</button>{{ listo_toggle('macroscopia') }}</div>
+    </form>
+  </div>
+  {% endif %}
+
+  <div class="tarjeta" id="micro">
+    <h2>Microscopía / Diagnóstico</h2>
+    <form method="post" action="{{ url_for('guardar_micro', caso_id=c.id) }}">
+      <input type="hidden" name="_csrf" value="{{ csrf }}">
+      <div class="grilla">
+        {% if c.tipo == 'PAP' %}
+          <div><label>Resultado (Bethesda)</label><select name="bethesda"><option value=""></option>
+            {% for b in bethesda %}<option {{ 'selected' if micro and micro.bethesda == b }}>{{ b }}</option>{% endfor %}</select></div>
+        {% endif %}
+        <div class="ancho"><label>Template micro (escribí para buscar)</label>
+          <input name="template" list="lista_micro" value="{{ micro.template if micro else '' }}" data-templates data-destino="desc_micro" data-conclusion="concl_micro" autocomplete="off">
+          <datalist id="lista_micro">{% for t in tpl_micro %}<option value="{{ t.titulo }}" data-id="{{ t.id }}">{% endfor %}</datalist></div>
+        <div class="ancho"><label>Descripción microscópica</label>
+          <textarea name="descripcion" id="desc_micro" rows="7">{{ micro.descripcion if micro else '' }}</textarea></div>
+        <div class="ancho"><label>Conclusión / diagnóstico</label>
+          <textarea name="conclusion" id="concl_micro" rows="3" style="min-height:70px">{{ micro.conclusion if micro else '' }}</textarea></div>
+        <div><label>Técnicas especiales</label><input name="tecnicas_especiales" value="{{ micro.tecnicas_especiales if micro else '' }}"></div>
+        {% if c.tipo == 'BP' %}
+        <div><label>¿Solicita IHQ?</label>
+          <select name="solicita_ihq" {{ 'disabled' if ihq_hecha }}>
+            <option value="0">No</option><option value="1" {{ 'selected' if micro and micro.solicita_ihq }}>Si</option></select>
+          {% if ihq_hecha %}<input type="hidden" name="solicita_ihq" value="1"><div class="muted">Ya tiene etapas de IHQ.</div>{% endif %}</div>
+        {% endif %}
+      </div>
+      <div class="acciones"><button class="btn">Guardar</button>{{ listo_toggle('microscopia') }}</div>
+    </form>
+  </div>
+
+  {% if c.tipo == 'BP' and micro and micro.solicita_ihq %}
+  <div class="tarjeta" id="ihq">
+    <h2>IHQ</h2>
+    <form method="post" action="{{ url_for('guardar_ihq', caso_id=c.id) }}">
+      <input type="hidden" name="_csrf" value="{{ csrf }}">
+      <div class="grilla">
+        <div class="ancho"><label>Marcadores / anticuerpos</label><textarea name="marcadores" style="min-height:60px">{{ ihq.marcadores if ihq else '' }}</textarea></div>
+        <div class="ancho"><label>Resultado IHQ</label><textarea name="resultado">{{ ihq.resultado if ihq else '' }}</textarea></div>
+      </div>
+      <div class="acciones"><button class="btn">Guardar</button>{{ listo_toggle('interp_ihq') }}</div>
+    </form>
+  </div>
+  {% endif %}
+</div>
+
+<div>
+  <div class="tarjeta">
+    <h2>Datos del ingreso</h2>
+    {% for etiqueta, valor in [("Paciente", (c.apellido or '') ~ (', ' ~ c.nombre if c.nombre else '')), ("DNI", c.dni),
+        ("Nacimiento", c.fecha_nacimiento | f), ("Sexo", c.sexo), ("Cobertura", c.cobertura), ("N° afiliado", c.n_afiliado),
+        ("Médico", c.medico), ("Lote", c.lote), ("Recolección", c.fecha_recoleccion | f),
+        ("Muestra", (c.subcategoria or '') ~ ' / ' ~ (c.sitio or '')), ("Tipo de muestra", c.tipo_muestra),
+        ("Cantidad", c.cantidad), ("Responsable", c.responsable), ("Observaciones", c.observaciones)] %}
+      {% if valor %}<div class="dato"><b>{{ etiqueta }}</b> {{ valor }}</div>{% endif %}
+    {% endfor %}
+    <div class="acciones"><a class="btn sec" href="{{ url_for('ingreso', caso_id=c.id) }}">Editar datos</a></div>
+  </div>
+
+  <div class="tarjeta">
+    <h2>Vuelta al sistema</h2>
+    <form method="post" action="{{ url_for('cargado_sistema', caso_id=c.id) }}">
+      <input type="hidden" name="_csrf" value="{{ csrf }}">
+      <label>N° de protocolo en southernbits</label><input name="protocolo_sistema" value="{{ c.protocolo_sistema or '' }}">
+      <label style="margin-top:8px;display:flex;gap:6px;align-items:center">
+        <input type="checkbox" name="cargado_sistema" value="1" {{ 'checked' if c.cargado_sistema }}> Cargado en el sistema</label>
+      <div class="acciones"><button class="btn sec">Guardar</button></div>
+    </form>
+  </div>
+
+  <div class="tarjeta">
+    <h2>Historial</h2>
+    <div class="historial">
+      {% for h in historial %}<div>{{ h.fecha_hora | fh }} · {{ h.iniciales or '?' }} · {{ h.accion }}{% if h.detalle %} ({{ h.detalle }}){% endif %}</div>{% endfor %}
+    </div>
+    <form method="post" action="{{ url_for('anular', caso_id=c.id) }}" class="acciones" data-confirmar="{{ '¿Reactivar el caso?' if c.anulado else '¿Anular el caso?' }}">
+      <input type="hidden" name="_csrf" value="{{ csrf }}">
+      {% if not c.anulado %}<input name="motivo" placeholder="Motivo de anulación" style="flex:1">{% endif %}
+      <button class="btn peligro">{{ 'Reactivar' if c.anulado else 'Anular' }}</button>
+    </form>
+  </div>
+</div>
+</div>
+{% endblock %}

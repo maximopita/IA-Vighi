@@ -37,12 +37,12 @@
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      padding: 32px 16px;
+      padding: 20px 20px;
     }
     ::selection { background: rgba(166, 87, 237, 0.3); }
     .contenedor {
       width: 100%;
-      max-width: 620px;
+      max-width: 1600px;
       background: #fff;
       border: 1px solid var(--borde);
       border-radius: var(--radio);
@@ -77,6 +77,14 @@
     header h1 { font-size: 22px; font-weight: 700; }
     header p { font-size: 14px; color: rgba(255, 255, 255, 0.78); margin-top: 4px; }
     .cuerpo { padding: 28px; }
+
+    /* Antes de analizar, los controles de carga quedan centrados a un ancho comodo
+       (un dropzone de 1000px se ve raro); el resultado despues usa todo el ancho. */
+    .selector-organo, #zona, #preview, .cargando, #error, #confirmacion, .aviso {
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
     .aviso {
       background: #fef3c7;
@@ -139,6 +147,45 @@
     @keyframes girar { to { transform: rotate(360deg); } }
 
     #resultado { display: none; margin-top: 24px; }
+    /* Layout del resultado: las IMAGENES van arriba, a todo el ancho (son el foco);
+       el resto (diagnostico, informe, feedback) va debajo, centrado a un ancho comodo
+       de lectura. */
+    .res-abajo { max-width: 1000px; margin: 26px auto 0; }
+
+    /* Informe de apoyo: desplegable, COLAPSADO por defecto (es secundario). El titulo
+       lo lleva el <summary>; el detalle aparece al hacer clic. */
+    .informe-det { margin: 20px 0; }
+    .informe-det > summary {
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--azul);
+      background: var(--gris-claro);
+      border: 1px solid var(--borde);
+      border-radius: var(--radio);
+      transition: background 0.12s ease;
+    }
+    .informe-det > summary::-webkit-details-marker { display: none; }
+    .informe-det > summary::after {
+      content: "▾";
+      margin-left: auto;
+      font-size: 12px;
+      color: var(--gris);
+      transition: transform 0.15s ease;
+    }
+    .informe-det[open] > summary { border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+    .informe-det[open] > summary::after { transform: rotate(180deg); }
+    .informe-det > summary:hover { background: var(--acento-suave); }
+    .informe-det .explicacion {
+      margin-top: 0;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
     .titulo-res {
       text-align: center;
       margin-bottom: 20px;
@@ -430,8 +477,8 @@
     .mapa-fig {
       margin: 0;
       flex: 1;
-      min-width: 140px;
-      max-width: 260px;
+      min-width: 220px;
+      max-width: 440px;
     }
     .mapa-fig figcaption {
       font-size: 12px;
@@ -478,7 +525,7 @@
       padding: 12px 16px; border-radius: 10px; font-size: 13.5px; text-align: left;
     }
     #celular-resultado { margin-top: 18px; }
-    .celular-fig { margin: 0 auto; }
+    .celular-fig { margin: 0 auto; max-width: 440px; }   /* mismo tamano que las otras imagenes */
     .celular-fig figcaption { font-size: 12px; font-weight: 600; color: var(--gris); margin-top: 6px; }
     .celular-leyenda {
       display: flex; flex-wrap: wrap; gap: 6px 14px; justify-content: center;
@@ -615,15 +662,7 @@
       </div>
 
       <div id="resultado">
-        <div class="titulo-res">
-          <div class="etiqueta" id="res-organo-etq">Órgano</div>
-          <div class="organo" id="res-organo">—</div>
-          <div class="conf" id="res-conf"></div>
-        </div>
-        <div id="barras"></div>
-
-        <div id="explicacion" class="explicacion"></div>
-
+        <!-- IMAGENES ARRIBA, a todo el ancho -->
         <div id="mapa-seccion" hidden>
           <div class="mapa-titulo">¿Dónde marca cáncer la IA?</div>
           <div class="mapa-comparacion">
@@ -643,6 +682,21 @@
             benigno, no se marca nada. Es orientativo — <em>no</em> reemplaza al patólogo.
           </div>
         </div>
+
+        <!-- LO DEMAS ABAJO, centrado -->
+       <div class="res-abajo">
+        <div class="titulo-res">
+          <div class="etiqueta" id="res-organo-etq">Órgano</div>
+          <div class="organo" id="res-organo">—</div>
+          <div class="conf" id="res-conf"></div>
+        </div>
+        <div id="barras"></div>
+
+        <!-- Informe de apoyo: desplegable, colapsado por defecto (es secundario). -->
+        <details class="informe-det" id="informe-det">
+          <summary>🧾 Informe automático de apoyo</summary>
+          <div id="explicacion" class="explicacion"></div>
+        </details>
 
         <!-- Motor celular: marca cada nucleo (HoVer-Net). Opcional y lento, por eso es un boton. -->
         <div id="celular-bloque">
@@ -673,6 +727,7 @@
             </figure>
             <div class="celular-leyenda" id="celular-leyenda"></div>
             <div class="celular-resumen" id="celular-resumen"></div>
+            <div class="inf-conc" id="celular-concordancia" hidden style="margin-top:12px"></div>
             <div class="mapa-nota">
               Cada contorno es un núcleo detectado por un modelo distinto e independiente
               (HoVer-Net, entrenado en PanNuke). <strong>«Neoplásico» es la clase que el
@@ -693,6 +748,7 @@
           <div class="feedback-botones" id="feedback-botones"></div>
           <div class="feedback-ok" id="feedback-ok"></div>
         </div>
+       </div>
       </div>
 
       <button class="boton-otra" id="boton-otra">Probar con otra imagen</button>
@@ -888,6 +944,7 @@
     const celError = document.getElementById("celular-error");
     const celResultado = document.getElementById("celular-resultado");
     let jobCelular = null, timerCelular = null;
+    let ultimoFracMaligno = null;   // % de zona maligna de la ultima prediccion (motor Phikon)
 
     const TIPOS_CEL = [   // orden, etiqueta y color (mismos colores que dibuja el motor)
       ["Neoplasico", "Neoplásico", "rgb(230,25,30)"],
@@ -941,6 +998,34 @@
         txt += ` — imagen reducida de ${r.reducida_de[0]}×${r.reducida_de[1]} a ${r.tam[0]}×${r.tam[1]} para acotar el tiempo`;
       }
       document.getElementById("celular-resumen").textContent = txt;
+
+      // ----- Concordancia entre los DOS motores (zona vs células) -----
+      // Phikon marcó un % de ÁREA como maligna; HoVer-Net encontró un % de NÚCLEOS
+      // neoplásicos. Que ambos (independientes) coincidan refuerza; si difieren, revisar.
+      const elConc = document.getElementById("celular-concordancia");
+      if (elConc) {
+        if (r.total && ultimoFracMaligno !== null) {
+          const zona = Math.round(ultimoFracMaligno);
+          const cel = Math.round(r.frac_neoplasico * 100);
+          const zonaAlta = zona >= 20, celAlta = cel >= 20;
+          let clase, msg;
+          if (zonaAlta === celAlta) {
+            clase = "conc-ok";
+            msg = zonaAlta
+              ? `✅ Los dos motores coinciden en señal maligna: zona ${zona}% del área · células ${cel}% de núcleos neoplásicos. Se refuerzan entre sí.`
+              : `✅ Los dos motores coinciden en señal baja: zona ${zona}% del área · células ${cel}% de núcleos neoplásicos.`;
+          } else {
+            clase = "conc-warn";
+            msg = `⚠️ Los dos motores difieren: zona ${zona}% del área maligna vs células ${cel}% de núcleos neoplásicos. Conviene revisar este caso.`;
+          }
+          elConc.className = "inf-conc " + clase;
+          elConc.textContent = msg;
+          elConc.hidden = false;
+        } else {
+          elConc.hidden = true;
+        }
+      }
+
       celResultado.hidden = false;
       btnCelular.style.display = "";
       btnCelular.disabled = false;
@@ -1114,6 +1199,8 @@
     });
 
     function mostrarResultado(datos) {
+      // Guardamos el % de zona maligna para cruzarlo con el motor celular (si se corre).
+      ultimoFracMaligno = (typeof datos.frac_maligno === "number") ? datos.frac_maligno : null;
       const org = datos.organo ? datos.organo : "Muestra";
       document.getElementById("res-organo-etq").textContent = "Órgano: " + org + " · Resultado";
       const elOrgano = document.getElementById("res-organo");
@@ -1134,7 +1221,7 @@
         const colS = esMalS ? "#dc2626" : "#16a34a";
         const claseConc = inf.concuerdan ? "conc-ok" : "conc-warn";
         let html = "";
-        html += `<div class="inf-titulo">🧾 Informe automático de apoyo</div>`;
+        // El titulo del informe lo pone el <summary> del desplegable (informe-det).
         // Las dos opiniones, lado a lado.
         html += `<div class="inf-modelos">`;
         html += `<div class="inf-modelo">
@@ -1150,11 +1237,14 @@
         html += `</div>`;
         html += `<div class="inf-conc ${claseConc}">${inf.concordancia}</div>`;
         if (inf.donde) html += `<div class="inf-donde">${inf.donde}</div>`;
+        if (inf.confianza_nota) html += `<div class="inf-donde" style="opacity:.85">ℹ️ ${inf.confianza_nota}</div>`;
         if (inf.limite) html += `<p class="exp-limite">⚠️ ${inf.limite}</p>`;
         elExplicacion.innerHTML = html;
         elExplicacion.style.display = "block";
+        document.getElementById("informe-det").style.display = "";
       } else {
         elExplicacion.style.display = "none";
+        document.getElementById("informe-det").style.display = "none";
       }
 
       // Mapa de calor (donde miro la IA), lado a lado con el original

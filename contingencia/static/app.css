@@ -1,0 +1,70 @@
+:root {
+  --violeta: #5b2c83;
+  --violeta-2: #8e6bbf;
+  --lila: #ede4f5;
+  --lila-2: #f7f3fb;
+  --texto: #2b2233;
+  --gris: #7e6a96;
+  --borde: #d9cde8;
+  --rojo: #b3261e;
+  --verde: #2e7d32;
+  --naranja: #b26a00;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font: 14px/1.45 "Segoe UI", system-ui, sans-serif; color: var(--texto); background: #fbf9fd; }
+a { color: var(--violeta); }
+.barra { display: flex; align-items: center; gap: 24px; padding: 10px 20px; background: var(--violeta); color: #fff; flex-wrap: wrap; }
+.barra a { color: #fff; text-decoration: none; }
+.marca { font-weight: 700; font-size: 16px; }
+.marca span { font-weight: 400; opacity: .75; }
+.barra nav { display: flex; gap: 16px; flex: 1; flex-wrap: wrap; }
+.barra nav a:hover, .quien a:hover { text-decoration: underline; }
+.quien { opacity: .9; }
+main { max-width: 1400px; margin: 0 auto; padding: 18px 20px 60px; }
+h1 { font-size: 20px; margin: 4px 0 14px; color: var(--violeta); }
+h2 { font-size: 15px; margin: 0 0 10px; color: var(--violeta); text-transform: uppercase; letter-spacing: .04em; }
+.aviso { padding: 9px 12px; border-radius: 6px; margin-bottom: 12px; background: var(--lila); }
+.aviso.error { background: #fbe9e7; color: var(--rojo); }
+.aviso.ok { background: #e8f5e9; color: var(--verde); }
+.tarjeta { background: #fff; border: 1px solid var(--borde); border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+.grilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px 14px; }
+.grilla .ancho { grid-column: 1 / -1; }
+label { display: block; font-size: 12px; color: var(--gris); margin-bottom: 3px; }
+input, select, textarea { width: 100%; padding: 7px 8px; border: 1px solid var(--borde); border-radius: 5px; font: inherit; background: #fff; }
+input:focus, select:focus, textarea:focus { outline: 2px solid var(--violeta-2); border-color: transparent; }
+input[readonly] { background: var(--lila-2); color: var(--gris); }
+textarea { min-height: 110px; resize: vertical; }
+input[type=checkbox] { width: auto; }
+.btn { display: inline-block; padding: 8px 14px; border-radius: 6px; border: 1px solid var(--violeta); background: var(--violeta);
+       color: #fff; font: inherit; cursor: pointer; text-decoration: none; }
+.btn.sec { background: #fff; color: var(--violeta); }
+.btn.listo { background: var(--verde); border-color: var(--verde); }
+.btn.peligro { background: #fff; color: var(--rojo); border-color: var(--rojo); }
+.btn:hover { filter: brightness(1.08); }
+.acciones { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; align-items: center; }
+table { width: 100%; border-collapse: collapse; background: #fff; }
+th { text-align: left; font-size: 12px; color: #fff; background: var(--violeta); padding: 7px 8px; font-weight: 600; }
+td { padding: 7px 8px; border-bottom: 1px solid var(--borde); vertical-align: top; }
+tr:hover td { background: var(--lila-2); }
+.chip { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 12px; background: var(--lila); color: var(--violeta); white-space: nowrap; }
+.chip.informado { background: var(--violeta); color: #fff; }
+.chip.anulado { background: #eee; color: #888; text-decoration: line-through; }
+.tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+.tabs a { padding: 5px 12px; border-radius: 14px; background: #fff; border: 1px solid var(--borde); text-decoration: none; font-size: 13px; }
+.tabs a.activo { background: var(--violeta); color: #fff; border-color: var(--violeta); }
+.filtros { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+.filtros input, .filtros select { width: auto; }
+.pasos { display: flex; flex-wrap: wrap; gap: 8px; }
+.paso { border: 1px solid var(--borde); border-radius: 8px; padding: 8px 10px; min-width: 150px; background: #fff; }
+.paso .nom { font-weight: 600; }
+.paso.hecho { background: var(--lila); border-color: var(--violeta-2); }
+.paso.proximo { border: 2px solid var(--verde); }
+.paso .det { font-size: 12px; color: var(--gris); }
+.cols { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; }
+@media (max-width: 900px) { .cols { grid-template-columns: 1fr; } }
+.dato { font-size: 13px; }
+.dato b { color: var(--gris); font-weight: 400; display: inline-block; min-width: 130px; }
+.muted { color: var(--gris); font-size: 12px; }
+.bloqueado { opacity: .6; }
+.login { max-width: 360px; margin: 60px auto; }
+.historial { font-size: 12px; color: var(--gris); max-height: 260px; overflow: auto; }

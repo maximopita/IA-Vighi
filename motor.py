@@ -29,9 +29,12 @@ MODELO_SEGUNDO = "vinid/plip"
 
 # Verificacion de organo (que la imagen sea del organo elegido).
 # Se compara la imagen contra el "prototipo" (centro) de cada organo en el espacio
-# de features de Phikon, por similitud coseno.
-UMBRAL_ORGANO = 0.45   # similitud minima con el organo elegido (piso; OOD por debajo)
-UMBRAL_PROPIO = 0.55   # por encima de esto, es claramente el organo elegido
+# de features de Phikon, por similitud coseno. Las similitudes coseno de Phikon son
+# TODAS altas (todo tejido histologico se parece), asi que un umbral ABSOLUTO deja
+# pasar el organo equivocado. Lo confiable es el ORDEN: el organo correcto es el mas
+# parecido. Por eso el criterio es RELATIVO (ver app.verificar_organo).
+UMBRAL_ORGANO = 0.45   # piso de similitud: por debajo, no hay ningun organo parecido (OOD)
+MARGEN_ORGANO = 0.06   # el elegido coincide si esta a <= este margen del mas parecido
 TEMP_ORGANO = 0.1      # temperatura para mostrar las similitudes como % legibles
 
 # Traduccion de organos (ES -> EN) para armar los prompts de PLIP (entiende ingles).
@@ -218,7 +221,8 @@ def _posiciones(largo, ventana, paso):
 
 
 @torch.no_grad()
-def mapa_malignidad(imagen_pil, clasificador, idx_maligno, tam=None, max_lado=512, divisor=4):
+def mapa_malignidad(imagen_pil, clasificador, idx_maligno, tam=None, max_lado=512,
+                    divisor=4, temperatura=1.0):
     """Mapa de malignidad de alta resolucion, por ventanas SUPERPUESTAS.
     Desliza una ventana cuadrada por la imagen (con ~2/3 de solapamiento), clasifica
     cada una como benigna/maligna y promedia las probabilidades en cada pixel
@@ -245,7 +249,8 @@ def mapa_malignidad(imagen_pil, clasificador, idx_maligno, tam=None, max_lado=51
     coords = [(x, y) for y in ys for x in xs]
 
     feats = extraer_features([img.crop((x, y, x + ventana, y + ventana)) for x, y in coords])
-    probs = torch.softmax(clasificador(feats), dim=1)[:, idx_maligno]
+    # temperatura: >1 suaviza la confianza (calibracion). =1 no cambia nada.
+    probs = torch.softmax(clasificador(feats) / temperatura, dim=1)[:, idx_maligno]
 
     # Acumulamos en un lienzo reducido (lado mayor = max_lado) con peso casi plano.
     s = min(1.0, max_lado / max(W, H))

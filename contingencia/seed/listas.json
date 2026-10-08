@@ -1,0 +1,31 @@
+{
+ "cobertura": [
+  "Particular",
+  "Obra Social",
+  "Prepaga"
+ ],
+ "sexo": [
+  "Mujer",
+  "Varon"
+ ],
+ "tipo_lote": [
+  "NO ONCO",
+  "ENDO",
+  "ONCO",
+  "PAPURG",
+  "TACOS",
+  "CT"
+ ],
+ "bethesda": [
+  "NILM",
+  "ASC-US",
+  "ASC-H",
+  "LSIL",
+  "HSIL",
+  "Carcinoma escamoso",
+  "AGC",
+  "AIS",
+  "Adenocarcinoma",
+  "Insatisfactoria"
+ ]
+}

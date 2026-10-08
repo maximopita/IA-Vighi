@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block titulo %}Tablero{% endblock %}
+{% block contenido %}
+<h1>Tablero</h1>
+{% set args = request.args.to_dict() %}
+<div class="tabs">
+  {% for clave, nombre in [("pendientes","Pendientes (" ~ conteo.pendientes ~ ")"), ("mios","De mis sectores"),
+                           ("informados","Informados (" ~ conteo.informados ~ ")"), ("sin_cargar","Sin cargar al sistema (" ~ conteo.sin_cargar ~ ")"),
+                           ("anulados","Anulados"), ("todos","Todos")] %}
+    <a href="{{ url_for('tablero', **dict(args, ver=clave)) }}" class="{{ 'activo' if f.ver == clave }}">{{ nombre }}</a>
+  {% endfor %}
+</div>
+<form class="filtros" method="get">
+  <input type="hidden" name="ver" value="{{ f.ver }}">
+  <input name="q" value="{{ f.q }}" placeholder="Buscar protocolo, paciente, DNI, lote, sitio…" size="36">
+  <select name="tipo">
+    <option value="">Todos los estudios</option>
+    {% for k, n in TIPOS.items() %}<option value="{{ k }}" {{ 'selected' if f.tipo == k }}>{{ n }}</option>{% endfor %}
+  </select>
+  <select name="sector">
+    <option value="">Pendiente en cualquier sector</option>
+    {% for k, n in SECTORES.items() if k != 'ingreso' %}<option value="{{ k }}" {{ 'selected' if f.sector == k }}>Pendiente en {{ n }}</option>{% endfor %}
+  </select>
+  <button class="btn sec">Filtrar</button>
+</form>
+<table>
+  <tr><th>Protocolo</th><th>Estudio</th><th>Paciente</th><th>Muestra</th><th>Lote</th><th>Responsable</th><th>Estado</th><th>Ingresado</th></tr>
+  {% for c in casos %}
+  <tr>
+    <td><a href="{{ url_for('caso', caso_id=c.id) }}"><b>{{ c.protocolo }}</b></a></td>
+    <td>{{ TIPOS[c.tipo] }}</td>
+    <td>{{ c.apellido or '' }}{% if c.nombre %}, {{ c.nombre }}{% endif %}<div class="muted">{{ c.dni or '' }}</div></td>
+    <td>{{ c.sitio or '' }}<div class="muted">{{ c.tipo_muestra or '' }}</div></td>
+    <td>{{ c.lote or '' }}</td>
+    <td>{{ c.responsable or '' }}</td>
+    <td><span class="chip {{ 'anulado' if c.anulado else ('informado' if not c.proxima) }}">{{ c.estado }}</span>
+        {% if c.proxima %}<div class="muted">{{ SECTORES[c.proxima[2]] }}</div>{% endif %}</td>
+    <td class="muted">{{ c.creado_en | fh }}</td>
+  </tr>
+  {% else %}
+  <tr><td colspan="8" class="muted">No hay casos para mostrar.</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}

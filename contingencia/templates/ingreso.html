@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% macro v(k) %}{{ (caso[k] if caso and caso[k] is not none else '') }}{% endmacro %}
+{% macro opciones(lista, actual) %}<option value=""></option>{% for o in lista %}<option {{ 'selected' if o|string == actual|string }}>{{ o }}</option>{% endfor %}{% endmacro %}
+{% block titulo %}{{ 'Editar' if editando else 'Ingreso' }} {{ TIPOS[tipo] }}{% endblock %}
+{% block contenido %}
+<h1>{{ 'Editar ingreso' if editando else 'Nuevo ingreso' }} — {{ TIPOS[tipo] }}</h1>
+<form method="post" data-tipo="{{ tipo }}">
+  <input type="hidden" name="_csrf" value="{{ csrf }}">
+  <div class="tarjeta">
+    <h2>Protocolo</h2>
+    <div class="grilla">
+      <div><label>N° Protocolo *</label><input name="protocolo" value="{{ v('protocolo') }}" required autofocus>
+        {% if ultimos and not editando %}<div class="muted">Últimos cargados: {{ ultimos | join(', ') }}</div>{% endif %}</div>
+      {% if tipo == 'BP' %}
+        <div><label>Tipo de lote</label><select name="tipo_lote">{{ opciones(listas.tipo_lote, v('tipo_lote')) }}</select></div>
+        <div><label>N° lote del día</label><select name="n_lote">{% for n in range(1, 11) %}<option {{ 'selected' if n|string == (v('n_lote') or '1') }}>{{ n }}</option>{% endfor %}</select></div>
+        <div><label>Lote {{ '(se puede corregir)' if editando else '(se arma solo: TIPO-MMDD.N)' }}</label>
+          <input name="lote" value="{{ v('lote') }}" {{ '' if editando else 'readonly placeholder=Automático' }}></div>
+      {% else %}
+        <div><label>Lote</label><input name="lote" value="{{ v('lote') }}"></div>
+      {% endif %}
+      <div><label>Fecha recolección</label><input type="date" name="fecha_recoleccion" value="{{ v('fecha_recoleccion') }}"></div>
+      <div><label>{{ 'Médico firmante' if tipo == 'BP' else 'Citotécnico responsable' }}</label>
+        <select name="responsable_id"><option value=""></option>
+          {% for r in responsables %}<option value="{{ r.id }}" {{ 'selected' if r.id|string == v('responsable_id')|string }}>{{ r.iniciales }}{% if r.nombre and r.nombre != r.iniciales %} — {{ r.nombre }}{% endif %}</option>{% endfor %}
+        </select></div>
+    </div>
+  </div>
+
+  <div class="tarjeta">
+    <h2>Paciente</h2>
+    <div class="grilla">
+      <div><label>Apellido</label><input name="apellido" value="{{ v('apellido') }}"></div>
+      <div><label>Nombre</label><input name="nombre" value="{{ v('nombre') }}"></div>
+      <div><label>DNI</label><input name="dni" value="{{ v('dni') }}"></div>
+      <div><label>Sexo</label><select name="sexo">{{ opciones(listas.sexo, v('sexo')) }}</select></div>
+      <div><label>Fecha nacimiento</label><input type="date" name="fecha_nacimiento" value="{{ v('fecha_nacimiento') }}"></div>
+      <div><label>Cobertura</label><select name="cobertura">{{ opciones(listas.cobertura, v('cobertura')) }}</select></div>
+      <div><label>N° afiliado</label><input name="n_afiliado" value="{{ v('n_afiliado') }}"></div>
+      <div><label>Exento</label><select name="exento">{{ opciones(['Si', 'No'], v('exento')) }}</select></div>
+      <div><label>E-mail</label><input type="email" name="email" value="{{ v('email') }}"></div>
+      <div><label>Teléfono</label><input name="telefono" value="{{ v('telefono') }}"></div>
+      <div><label>Médico solicitante</label><input name="medico" value="{{ v('medico') }}"></div>
+      <div><label>Lugar recolección</label><input name="lugar_recoleccion" value="{{ v('lugar_recoleccion') }}"></div>
+      <div><label>Lugar entrega</label><input name="lugar_entrega" value="{{ v('lugar_entrega') }}"></div>
+    </div>
+  </div>
+
+  <div class="tarjeta">
+    <h2>Muestra</h2>
+    <div class="grilla">
+      <div><label>Categoría</label><input value="{{ 'Biopsias' if tipo == 'BP' else 'Citologías' }}" readonly></div>
+      {% if tipo == 'PAP' %}
+        <div><label>Subcategoría</label><input name="subcategoria" value="Ginecológica" readonly></div>
+        <div><label>Sitio</label><input name="sitio" value="Vagina" readonly></div>
+      {% else %}
+        <div><label>Subcategoría (sistema)</label><select name="subcategoria" data-actual="{{ v('subcategoria') }}"></select></div>
+        <div><label>Sitio (órgano)</label><select name="sitio" data-actual="{{ v('sitio') }}"></select></div>
+      {% endif %}
+      <div><label>Tipo de muestra</label><select name="tipo_muestra" data-actual="{{ v('tipo_muestra') }}"></select></div>
+      <div><label>Cantidad ({{ 'frascos' if tipo == 'BP' else 'vidrios' }})</label>
+        <select name="cantidad">{{ opciones(range(1, 11), v('cantidad')) }}</select></div>
+      {% if tipo == 'PAP' %}<div><label>Citología hormonal</label><select name="citologia_hormonal">{{ opciones(['Si', 'No'], v('citologia_hormonal')) }}</select></div>{% endif %}
+      <div class="ancho"><label>Observaciones</label><textarea name="observaciones" style="min-height:60px">{{ v('observaciones') }}</textarea></div>
+    </div>
+  </div>
+  <div class="acciones">
+    <button class="btn">{{ 'Guardar cambios' if editando else 'Ingresar protocolo' }}</button>
+    <a class="btn sec" href="{{ url_for('caso', caso_id=caso.id) if editando else url_for('tablero') }}">Cancelar</a>
+  </div>
+</form>
+{% endblock %}

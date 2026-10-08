@@ -135,6 +135,29 @@ for epoca in range(EPOCAS):
         print(f"Epoca {epoca + 1}/{EPOCAS} - perdida: {perdida.item():.3f} "
               f"- precision train: {prec_train:.1f}% - precision validacion: {prec_val:.1f}%")
 
+# ---- Calibracion de la confianza (temperature scaling) ----
+# Ajusta un unico factor T sobre los logits para que la confianza que muestra el modelo
+# refleje su acierto real. Se ajusta en VALIDACION (datos que no entrenaron el head).
+# T=1 = sin cambio (ocurre cuando el modelo ya esta bien calibrado, p. ej. datos limpios).
+clasificador.eval()
+temperatura = 1.0
+if n_val:
+    with torch.no_grad():
+        logits_val = clasificador(X_val)
+    logT = torch.zeros(1, requires_grad=True)   # optimizamos log(T) para que T>0
+    opt_T = torch.optim.LBFGS([logT], lr=0.1, max_iter=60)
+    crit_T = nn.CrossEntropyLoss()
+
+    def _paso():
+        opt_T.zero_grad()
+        p = crit_T(logits_val / logT.exp(), y_val)
+        p.backward()
+        return p
+    opt_T.step(_paso)
+    temperatura = round(float(logT.exp().item()), 3)
+    print(f"\nCalibracion: temperatura T = {temperatura} "
+          f"({'sin cambios, ya calibrado' if abs(temperatura - 1) < 0.1 else 'suaviza la confianza'})")
+
 # ---- Prototipo de organo (para verificar que la imagen sea de este organo) ----
 # Es el "centro" del organo. Se calcula SIEMPRE con las imagenes ENTERAS (la identidad
 # del organo es una propiedad global), aunque el clasificador se haya entrenado con
@@ -192,6 +215,7 @@ torch.save({
     "prototipos": prototipos,      # varios patrones (chico + ancho) para la verificacion
     "panoramica": PANORAMICA,      # si se entreno cortando panoramicas en parches
     "parche_px": PARCHE_PX if PANORAMICA else None,  # escala del parche
+    "temperatura": temperatura,    # calibracion de la confianza (T; 1.0 = sin ajuste)
 }, ARCHIVO_MODELO)
 print(f"\nListo. Modelo guardado en '{ARCHIVO_MODELO}'")
 print(f"Motor base: {motor.MODELO_BASE} | Clases: {clases}"

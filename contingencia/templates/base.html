@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block titulo %}Contingencia{% endblock %} · CAP Vighi</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+</head>
+<body>
+  <header class="barra">
+    <a class="marca" href="{{ url_for('tablero') }}">Contingencia <span>CAP Vighi</span></a>
+    {% if yo %}
+    <nav>
+      <a href="{{ url_for('tablero') }}">Tablero</a>
+      <a href="{{ url_for('ingreso', tipo='PAP') }}">+ PAP</a>
+      <a href="{{ url_for('ingreso', tipo='BP') }}">+ Biopsia</a>
+      <a href="{{ url_for('ingreso', tipo='CT') }}">+ Citología</a>
+      <a href="{{ url_for('exportar') }}">Exportar Excel</a>
+      {% if yo.admin %}<a href="{{ url_for('usuarios') }}">Usuarios</a>{% endif %}
+    </nav>
+    <div class="quien">{{ yo.iniciales }} · <a href="{{ url_for('cambiar_clave') }}">Clave</a> · <a href="{{ url_for('logout') }}">Salir</a></div>
+    {% endif %}
+  </header>
+  <main>
+    {% with msgs = get_flashed_messages(with_categories=true) %}
+      {% for cat, m in msgs %}<div class="aviso {{ cat }}">{{ m }}</div>{% endfor %}
+    {% endwith %}
+    {% block contenido %}{% endblock %}
+  </main>
+  <script>window.CSRF = "{{ csrf }}";</script>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
